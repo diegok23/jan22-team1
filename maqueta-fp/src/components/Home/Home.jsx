@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import bgLogin from  '../../img/fondo9.jpg'
+import bgLogin from  '../../img/fondo8.jpg'
 import { CssBaseline } from '@mui/material';
 import Header from './Header'
 import SectionOne from './SectionOne';

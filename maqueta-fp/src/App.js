@@ -1,18 +1,16 @@
-import React from "react";
-import Home from "./components/Home/Home"
-import { Route, Routes } from "react-router-dom";
-import Login from "./components/Login/Login";
-import SignUp from "./components/SignUp/SignUp";
-
-export default function App (){
+import Mainfeed from "./components/Feed/Mainfeed";
+import MainLanding from "./components/Landing/MainLanding";
+import MainLogin from "./components/Login/MainLogin";
+import {Routes, Route} from 'react-router-dom'
+function App() {
   return (
-    <>
     <Routes>
-      <Route path="/" element={ <Home />}/>
-      <Route path="/login" element={ <Login />}/>
-      <Route path="/signup" element={ <SignUp/>}/>
+      <Route path="/" element={<MainLanding />}/>
+      <Route path="/login" element={<MainLogin />}/>
+      <Route path="/feed" element={<Mainfeed />}/>
+      
     </Routes>
-   
-    </>
-  )
+  );
 }
+
+export default App;
