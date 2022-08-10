@@ -104,7 +104,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
     <ThemeProvider theme={themePalette}>
-      <AppBar position="sticky">
+      <AppBar position="fixed">
         <StyledToolbar variant="dense">
           <Typography
             variant="h6"

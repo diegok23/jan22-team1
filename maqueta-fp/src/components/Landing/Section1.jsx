@@ -103,7 +103,7 @@ function Section1() {
               color="secondary.main"
               letterSpacing="0.1rem"
               sx={{
-                fontFamily: "Space Mono",
+                fontFamily: "Raleway",
                 fontWeight: "800",
                 fontSize: { xs: "1.3rem" },
               }}
