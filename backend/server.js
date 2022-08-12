@@ -1,11 +1,15 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const api = require('./api');
+const cors = require("cors");
+
+const api = require("./api");
+
+app.use(cors());
 
 const myLogger = (req, res, next) => {
   const log = {
     date: new Date(),
-    url: req.url
+    url: req.url,
   };
   console.log(JSON.stringify(log, null, 2));
   next();
@@ -13,9 +17,8 @@ const myLogger = (req, res, next) => {
 
 app.use(myLogger);
 
-app.get('/', api.getUsers);
+app.get("/", api.getUsers);
 
-
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const url = `http://localhost:${PORT}`;
 app.listen(PORT, () => console.log(`Listening on port ${url}`));
