@@ -4,7 +4,10 @@ const cors = require("cors");
 
 const api = require("./api");
 
-app.use(cors());
+const corsConfig = {
+  origin: "http://localhost:3000",
+};
+app.use(cors(corsConfig));
 
 const myLogger = (req, res, next) => {
   const log = {
@@ -14,10 +17,11 @@ const myLogger = (req, res, next) => {
   console.log(JSON.stringify(log, null, 2));
   next();
 };
-
 app.use(myLogger);
 
-app.get("/", api.getUsers);
+app.use(express.json());
+
+app.get("/users/all", api.getUsers);
 
 const PORT = process.env.PORT || 4000;
 const url = `http://localhost:${PORT}`;

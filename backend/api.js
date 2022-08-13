@@ -1,10 +1,10 @@
-const database = require('./database');
+// const database = require('./database');
 
-//QUERIES
-const getUsers = (req, res) => {
-  database.pool.query('SELECT * FROM users', (error, result) => {
-    res.json(result.rows);
-  });
-};
+// //QUERIES
+// const getUsers = (req, res) => {
+//   database.pool.query('SELECT * FROM users', (error, result) => {
+//     res.json(result.rows);
+//   });
+// };
 
-module.exports = { getUsers };
+// module.exports = { getUsers };
