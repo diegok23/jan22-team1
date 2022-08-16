@@ -3,6 +3,10 @@ let todayDate = new Date().toISOString().slice(0, 10);
 
 //QUERIES
 
+const main = (req, res) => {
+  res.status(200).send('Main page');
+};
+
 //LISTA DE USUARIOS
 const getUsers = (req, res) => {
   database.pool.query('SELECT * FROM users', (error, result) => {
@@ -13,7 +17,7 @@ const getUsers = (req, res) => {
 //INFORMACION BASICA DEL USUARIO
 const getUserProfile = (req, res) => {
   const userId = req.params.userId;
-  const query = 'SELECT name, userName, email, city, description FROM users WHERE id=$1';
+  const query = 'SELECT name, username, email, city, description FROM users WHERE id=$1';
   database.pool
     .query(query, [userId])
     .then((result) => res.json(result.rows))
@@ -23,7 +27,7 @@ const getUserProfile = (req, res) => {
 //LISTA DE RUTAS
 const getRoutes = (req, res) => {
   database.pool.query(
-    `SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+    `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id`,
     (error, result) => {
       res.json(result.rows);
@@ -34,7 +38,9 @@ const getRoutes = (req, res) => {
 //INFORMACION DE UNA RUTA
 const getRoutesById = (req, res) => {
   const routeId = req.params.routeId;
-  const query = 'SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes WHERE id=$1';
+  const query = `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  INNER JOIN users AS u ON r.userId=u.id
+  WHERE r.id=$1`;
   database.pool
     .query(query, [routeId])
     .then((result) => res.json(result.rows))
@@ -44,7 +50,7 @@ const getRoutesById = (req, res) => {
 //BUSQUEDA DE UNA RUTA
 const getRoutesBySearch = (req, res) => {
   const searchString = req.query.s;
-  const query = `SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
   database.pool
@@ -112,6 +118,7 @@ const getFavoriteRoutes = (req, res) => {
 };
 
 module.exports = {
+  main,
   getUsers,
   getUserProfile,
   getRoutes,

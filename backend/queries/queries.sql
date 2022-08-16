@@ -116,4 +116,7 @@ SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at
 INNER JOIN users AS u ON r.userId=u.id
 WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%soria%';
 
-
+--ROUTES by id
+SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+INNER JOIN users AS u ON r.userId=u.id
+WHERE r.id=1
