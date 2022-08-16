@@ -22,16 +22,19 @@ const getUserProfile = (req, res) => {
 
 //LISTA DE RUTAS
 const getRoutes = (req, res) => {
-  database.pool.query(`SELECT u.name, u.imgProfile, r.description, r.url, r.created_at FROM routes AS r
-  INNER JOIN users AS u ON r.userId=u.id`, (error, result) => {
-    res.json(result.rows);
-  });
+  database.pool.query(
+    `SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  INNER JOIN users AS u ON r.userId=u.id`,
+    (error, result) => {
+      res.json(result.rows);
+    }
+  );
 };
 
 //INFORMACION DE UNA RUTA
 const getRoutesById = (req, res) => {
   const routeId = req.params.routeId;
-  const query = 'SELECT * FROM routes WHERE id=$1';
+  const query = 'SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes WHERE id=$1';
   database.pool
     .query(query, [routeId])
     .then((result) => res.json(result.rows))
@@ -41,7 +44,7 @@ const getRoutesById = (req, res) => {
 //BUSQUEDA DE UNA RUTA
 const getRoutesBySearch = (req, res) => {
   const searchString = req.query.s;
-  const query = `SELECT u.name, u.imgProfile, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.userName AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
   database.pool
@@ -75,7 +78,7 @@ const postRoute = (req, res) => {
 
   const queryTitles = updateArrayKeys.join(', ');
   const queryPositions = updateArrayPositions.join(', ');
-  
+
   database.pool
     .query(`INSERT INTO routes (${queryTitles}) VALUES (${queryPositions})`, values)
     .then(() => res.send(`Route created!`))
@@ -98,10 +101,12 @@ const getFavoriteRoutes = (req, res) => {
   const userId = req.params.userId;
 
   database.pool
-    .query(`SELECT u.userName, r.country, r.city, r.routeName, r.length, r.description, r.url, r.created_at FROM favRoutes AS f
+    .query(
+      `SELECT r.country, r.city, r.routeName, r.length, r.description, r.url, r.created_at FROM favRoutes AS f
     INNER JOIN users AS u ON f.userID=u.id
     INNER JOIN routes AS r ON f.routeID=r.id
-    WHERE f.userId=${userId} ORDER BY routeId`)
+    WHERE f.userId=${userId} ORDER BY routeId`
+    )
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
