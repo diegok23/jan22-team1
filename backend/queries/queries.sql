@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS routeData;
 
 CREATE TABLE users (
     id          SERIAL   PRIMARY KEY,
-    userName    VARCHAR(30) NOT NULL,
+    username    VARCHAR(30) NOT NULL,
     email       VARCHAR(120) NOT NULL,
     password    VARCHAR(120) NOT NULL,
     name        VARCHAR(120),
