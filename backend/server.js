@@ -1,13 +1,17 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const passport = require("passport");
 
-const api = require("./api");
+//const { getUsers } = require("./api");
 
-const corsConfig = {
-  origin: "http://localhost:3000",
-};
-app.use(cors(corsConfig));
+//initialize middlewares
+app.use(express.json());
+app.use(cors());
+//app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+//import routes
+const authRoutes = require("./routes/auth");
 
 const myLogger = (req, res, next) => {
   const log = {
@@ -19,9 +23,11 @@ const myLogger = (req, res, next) => {
 };
 app.use(myLogger);
 
-app.use(express.json());
+app.get("/", (req, res) => {
+  res.json({ message: "Hello world!" });
+});
 
-app.get("/users/all", api.getUsers);
+app.use("/users", authRoutes);
 
 const PORT = process.env.PORT || 4000;
 const url = `http://localhost:${PORT}`;
