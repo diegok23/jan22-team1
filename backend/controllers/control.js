@@ -1,4 +1,6 @@
 const { pool } = require("../database/db");
+const bcrypt = require("bcrypt");
+const generateJWT = require("../utils/JWTgenerator");
 
 const getUsers = async (req, res) => {
   try {
@@ -15,23 +17,33 @@ const getUsers = async (req, res) => {
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
-  try {
-    const hashedPassword = await hash(password, 10);
 
-    await pool.query(
-      "INSERT INTO users(username, email, password) VALUES ($1 , $2 , $3)",
+  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log(hashedPassword);
+
+  try {
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+
+    if (user.rows.length > 0) {
+      return res.status(401).json({ message: "Email is already registered" });
+    }
+
+    const newUser = await pool.query(
+      "INSERT INTO users(username, email, password) VALUES ($1 , $2 , $3) RETURNING user_id, password",
       [name, email, hashedPassword]
     );
 
-    return res.status(201).json({
-      success: true,
-      message: "The registraion was succesfull",
+    const jwtToken = generateJWT(newUser.rows[0].user_id);
+
+    return res.json({
+      message: "User registered properlly, please Login",
+      jwtToken,
     });
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({
-      error: error.message,
-    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
   }
 };
 
@@ -82,4 +94,4 @@ const logout = async (req, res) => {
   }
 };
 
-module.exports = { getUsers };
+module.exports = { getUsers, register };

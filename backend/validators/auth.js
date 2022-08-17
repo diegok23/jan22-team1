@@ -1,7 +1,4 @@
-const { pool } = require("../database/db");
-const bcrypt = require("bcrypt");
-
-const registerValidation = async (req, res) => {
+const registerValidation = async (req, res, next) => {
   let { name, email, password, password2 } = req.body;
 
   let errors = [];
@@ -32,38 +29,6 @@ const registerValidation = async (req, res) => {
     console.log(errors);
     return res.send(errors);
   } else {
-    hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
-
-    // Validation passed
-    pool.query(
-      `SELECT * FROM users
-        WHERE email = $1`,
-      [email],
-      (err, results) => {
-        if (err) {
-          console.log(err);
-        }
-        console.log(results.rows);
-
-        if (results.rows.length > 0) {
-          return res.send({ message: "Email is already registered" });
-        } else {
-          pool.query(
-            `INSERT INTO users (username, email, password)
-                VALUES ($1, $2, $3)
-                RETURNING user_id, password`,
-            [name, email, hashedPassword],
-            (err, results) => {
-              if (err) {
-                throw err;
-              }
-              console.log(results.rows);
-            }
-          );
-        }
-      }
-    );
   }
 };
 

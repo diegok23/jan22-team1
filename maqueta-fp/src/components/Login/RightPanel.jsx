@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 import bg from "../../img/login-bg-mobile.JPG";
 import HomeIcon from "@mui/icons-material/Home";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -66,31 +67,49 @@ const Input = styled(TextField)(({ theme }) => ({
   },
 }));
 const ButtonHome = styled(Button)(({ theme }) => ({
-  height:'42px',
+  height: "42px",
   borderRadius: "50px",
-  minWidth:'25px',
+  minWidth: "25px",
   backgroundColor: "transparent",
   "&:hover": {
     backgroundColor: theme.palette.secondary.main,
   },
   textTransform: "none",
-  padding:'0px',
-
+  padding: "0px",
 }));
 
 function RightPanel() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  function handleSubmit() {
+    fetch("http://localhost:4000/users/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+  }
   return (
     <ThemeProvider theme={theme}>
       <Panel>
         <Box sx={{ position: "absolute", top: "1%", right: "5%" }}>
-          <ButtonHome >
-            <Link to='/'><HomeIcon
-              color="secondary"
-              sx={{
-                fontSize: { xs: "30px", sm: "30px", md: "40px" },
-                "& :hover": { color: "#fff" }, marginTop:'5px'
-              }}
-            /></Link>
+          <ButtonHome>
+            <Link to="/">
+              <HomeIcon
+                color="secondary"
+                sx={{
+                  fontSize: { xs: "30px", sm: "30px", md: "40px" },
+                  "& :hover": { color: "#fff" },
+                  marginTop: "5px",
+                }}
+              />
+            </Link>
           </ButtonHome>
         </Box>
         <Box
@@ -135,19 +154,25 @@ function RightPanel() {
             </Typography>
           </Typography>
 
-          <Box>
+          <Box
+            component={"form"}
+            noValidate
+            autoComplete="off"
+            // onSubmit={handleSubmit}
+          >
             <Input
               required
+              value={email}
               id="standard-read-only-input"
               label="Email Address"
               variant="standard"
               color="secondary"
               focused
+              onChange={(e) => setEmail(e.target.value)}
             />
-          </Box>
 
-          <Box>
             <Input
+              value={password}
               id="standard-password-input"
               label="Password"
               type="password"
@@ -155,10 +180,10 @@ function RightPanel() {
               variant="standard"
               color="secondary"
               focused
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Box>
-
-          <ButtonPer size="small" variant="contained">
+          <ButtonPer size="small" variant="contained" onClick={handleSubmit}>
             <Typography>Log in</Typography>
           </ButtonPer>
         </Box>

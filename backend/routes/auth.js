@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const router = Router();
-//const {} = require("../controllers/control");
+const { getUsers, register } = require("../controllers/control");
+//const {validationMiddleware} = require("../middleware/validations-middleware");
 const { registerValidation } = require("../validators/auth");
 
-router.get("/allusers");
-router.post("/signup", registerValidation);
+router.get("/allusers", getUsers);
+router.post("/signup", registerValidation && register);
 router.post("/login");
 router.get("/logout");
 

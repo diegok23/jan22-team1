@@ -15,7 +15,6 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-//import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -33,14 +32,8 @@ function CollapseSignUpCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  // let texto = JSON.stringify({
-  //   name: name,
-  //   email: email,
-  //   password: password,
-  //   password2: password2,
-  // });
+
   function handleSubmit() {
-    "handleSubmit is assigned a value but never used.";
     fetch("http://localhost:4000/users/signup", {
       method: "POST",
       body: JSON.stringify({
@@ -55,21 +48,6 @@ function CollapseSignUpCard() {
     })
       .then((res) => res.json())
       .then((result) => console.log(result));
-
-    //---------------AXIOS_TEST--------------//
-    // POST request using axios with error handling
-    // const article = {
-    //  name: name,
-    //  email: email,
-    //  password: password,
-    //  password2: password2, };
-    // const headers = {"Content-Type": "application/json"};
-    // axios.post('https://localhost:4000/users/signup', article, { headers })
-    //     .then(response => this.setState({ articleId: response.data.id }))
-    //     .catch(error => {
-    //         this.setState({ errorMessage: error.message });
-    //         console.error('There was an error!', error);
-    //     });
   }
 
   const [checked, setChecked] = useState(false);
