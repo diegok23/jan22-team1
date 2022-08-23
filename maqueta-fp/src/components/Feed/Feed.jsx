@@ -28,7 +28,7 @@ const Feed = () => {
           color: "white.main",
         }}
         flex={4}
-        p={{md:2}}
+        paddingX={{md:5, lg:10, xl:10 }}
       >
         <CardMain />
         <CardMain />

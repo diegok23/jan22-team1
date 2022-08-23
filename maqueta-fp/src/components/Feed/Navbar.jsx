@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   AppBar,
   createTheme,
-  InputBase,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -13,7 +12,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import styled from "@emotion/styled";
-import { DirectionsBike, Search, Logout } from "@mui/icons-material";
+import { DirectionsBike,Logout } from "@mui/icons-material";
 
 const themePalette = createTheme({
   palette: {
@@ -36,40 +35,7 @@ const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
 });
-const SearchPer = styled("div")({
-  position: "relative",
-  backgroundColor: "#4c4c4c",
-  borderRadius: "15px",
-  "& :hover": {
-    backgroundColor: "rgb(163,163,163,0.25)",
-    width: "100%",
-    borderRadius: "15px",
-  },
-  width: "30%",
-  marginRight: "10px",
-});
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    fontSize: "0.8rem",
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "50%",
-    },
-  },
-}));
+
 const Icons = styled(Box)(({ theme }) => ({
   backgroundColor: "primary",
   display: "none",
@@ -121,16 +87,6 @@ const Navbar = () => {
           />
           <Box sx={{ flexGrow: 1 }} />
 
-          <SearchPer>
-            <SearchIconWrapper>
-              <Search />
-            </SearchIconWrapper>
-
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </SearchPer>
 
           <Icons>
             <ButtonLogin>

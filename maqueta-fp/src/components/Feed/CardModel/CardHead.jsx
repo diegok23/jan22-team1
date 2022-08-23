@@ -32,7 +32,7 @@ const CardHead = () => {
       <CardHeader
         disableTypography
         sx={{
-          backgroundColor: "primary.main",
+          backgroundColor: "secondary.main",
           color: "white.main",
         }}
         avatar={<Avatar src={profileImg}></Avatar>}
@@ -54,9 +54,9 @@ const CardHead = () => {
           <Typography
             component="p"
             variant="p"
-            sx={{ color: "secondary.main", fontFamily: "Nunito Sans",  fontSize: { xs: "0.6rem", sm: "0.7rem", md: "0.8rem" } }}
+            sx={{ color: "white.main", fontFamily: "Nunito Sans",  fontSize: { xs: "0.6rem", sm: "0.7rem", md: "0.8rem" } }}
           >
-            August 08, 2022
+            Barcelona, Spain
           </Typography>
         }
       />
