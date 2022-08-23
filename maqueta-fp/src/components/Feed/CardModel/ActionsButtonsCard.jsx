@@ -7,13 +7,7 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-import {
-  Directions,
-  KeyboardArrowRight,
-  Share,
-  Star,
-  StarBorder,
-} from "@mui/icons-material";
+import { Directions, BookmarkBorder, Bookmark } from "@mui/icons-material";
 import styled from "@emotion/styled";
 
 const theme = createTheme({
@@ -38,13 +32,12 @@ const ButtonPer = styled(Button)(({ theme }) => ({
   marginLeft: "10px",
   borderRadius: "10px",
   color: theme.palette.white.main,
-  fontSize: '0.7rem',
-  fontWeight:'700',
-  fontFamily:'Raleway',
+  fontSize: "0.7rem",
+  fontWeight: "700",
+  fontFamily: "Raleway",
   [theme.breakpoints.up("md")]: {
-    fontSize: '0.8rem',
-  }
- 
+    fontSize: "0.8rem",
+  },
 }));
 const ActionsButtonsCard = () => {
   return (
@@ -57,7 +50,7 @@ const ActionsButtonsCard = () => {
           borderTop: "solid",
           borderWidth: "1px",
           borderColor: "#bdbdbd",
-          backgroundColor: "primary.main",
+          backgroundColor: "secondary.main",
         }}
       >
         <Box sx={{ display: "flex" }}>
@@ -65,30 +58,18 @@ const ActionsButtonsCard = () => {
             startIcon={
               <Checkbox
                 sx={{ padding: "0px" }}
-                icon={<StarBorder sx={{ color: "secondary.main" }} />}
-                checkedIcon={<Star sx={{ color: "yellow" }} />}
+                icon={<BookmarkBorder sx={{ color: "white.main" }} />}
+                checkedIcon={<Bookmark sx={{ color: "yellow" }} />}
               />
             }
           >
-            Favorite
-          </ButtonPer>
-
-          <ButtonPer startIcon={<Share sx={{ color: "secondary.main" }} />}>
-            Share
-          </ButtonPer>
-
-          <ButtonPer
-            startIcon={<Directions sx={{ color: "secondary.main" }} />}
-          >
-            Go to map
+            Save
           </ButtonPer>
         </Box>
 
         <Box sx={{ display: "flex" }}>
-          <ButtonPer
-            endIcon={<KeyboardArrowRight sx={{ color: "secondary.main" }} />}
-          >
-            See
+          <ButtonPer startIcon={<Directions sx={{ color: "white.main" }} />}>
+            Go to map
           </ButtonPer>
         </Box>
       </CardActions>

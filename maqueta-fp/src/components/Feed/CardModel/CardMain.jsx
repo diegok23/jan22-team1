@@ -1,10 +1,11 @@
 import React from "react";
 import { Card } from "@mui/material";
 import ImagesCard from "./ImagesCard";
-import ContentCard from "./ContentCard";
+import DescriptionCard from "./DescriptionCard";
 import CardHead from "./CardHead";
 import ActionsButtonsCard from "./ActionsButtonsCard"
 import { styled } from "@mui/system";
+import TypeandDataCard from "./TypeandDateCard";
 
 
 const CardPer = styled(Card)(({ theme }) => ({
@@ -22,9 +23,9 @@ const CardPer = styled(Card)(({ theme }) => ({
 const CardMain = () => {
   return (
    <CardPer>
-    <CardHead/>
-      <ImagesCard />
-      <ContentCard />
+    <CardHead/> 
+      <DescriptionCard />
+      <TypeandDataCard/>
       <ActionsButtonsCard />
       </CardPer>
   );
