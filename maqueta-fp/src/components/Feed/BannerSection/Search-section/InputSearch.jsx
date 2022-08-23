@@ -11,7 +11,6 @@ function InputSearch() {
       <SearchIconWrapper>
         <Search />
       </SearchIconWrapper>
-
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
