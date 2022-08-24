@@ -1,12 +1,21 @@
-const { Router } = require("express");
-const router = Router();
-const { getUsers, register } = require("../controllers/control");
-//const {validationMiddleware} = require("../middleware/validations-middleware");
-const { registerValidation } = require("../validators/auth");
+const router = require("express").Router();
+const {
+  getUsers,
+  register,
+  login,
+  logout,
+  verify,
+} = require("../controllers/control");
+const { authorize } = require("../middleware/authorize");
+const {
+  registerValidation,
+  loginValidation,
+} = require("../middleware/validation");
 
 router.get("/allusers", getUsers);
-router.post("/signup", registerValidation && register);
-router.post("/login");
-router.get("/logout");
+router.post("/signup", registerValidation, register);
+router.post("/login", loginValidation, login);
+router.get("/logout", logout);
+router.post("/verify", authorize, verify);
 
 module.exports = router;

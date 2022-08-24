@@ -16,7 +16,7 @@ const getUsers = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  let { name, email, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
   console.log(hashedPassword);
@@ -46,37 +46,28 @@ const register = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
-
 const login = async (req, res) => {
-  let user = req.user;
-
-  let payload = {
-    id: user.user_id,
-    email: user.email,
-  };
+  const { email, password } = req.body;
 
   try {
-    const token = await sign(payload, SECRET);
+    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
 
-    return res.status(200).cookie("token", token, { httpOnly: true }).json({
-      success: true,
-      message: "Logged in succefully",
-    });
-  } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({
-      error: error.message,
-    });
-  }
-};
+    if (user.rows.length === 0) {
+      return res.status(401).json("Invalid Credential");
+    }
 
-const protected = async (req, res) => {
-  try {
-    return res.status(200).json({
-      info: "protected info",
-    });
-  } catch (error) {
-    console.log(error.message);
+    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+
+    if (!validPassword) {
+      return res.status(401).json("Invalid Credential");
+    }
+    const jwtToken = generateJWT(user.rows[0].user_id);
+    return res.json({ jwtToken });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
   }
 };
 
@@ -94,4 +85,13 @@ const logout = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, register };
+const verify = (req, res) => {
+  try {
+    res.json(true);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+module.exports = { getUsers, register, login, logout, verify };
