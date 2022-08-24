@@ -7,32 +7,28 @@ import Page1 from "./Tutorial-Carousel-IMG/Tutorial page 1.png";
 import Page2 from "./Tutorial-Carousel-IMG/Tutorial page 2.png";
 import Page3 from "./Tutorial-Carousel-IMG/Tutorial page 3.png";
 
-const images = [
-  {
-    title: "AA",
-    subtitle: "aa",
-    img: Page1,
-  },
-  {
-    title: "AB",
-    subtitle: "ab",
-    img: Page2,
-  },
-  {
-    title: "AC",
-    subtitle: "ac",
-    img: Page3,
-  },
-];
-
 function Carousel() {
   const [currImg, setCurrImg] = useState(0);
+
+  const images = [
+    { title: "", subtitle: "", img: Page1 },
+    {
+      title: "",
+      subtitle: "",
+      img: Page2,
+    },
+    {
+      title: "",
+      subtitle: "",
+      img: Page3,
+    },
+  ];
 
   return (
     <div className="carousel">
       <div
         className="carouselInner"
-        style={{ backgroundImage: `url(${images[currImg].img})` }}
+        style={{ backgroundImage: `url('${images[currImg].img}')` }}
       >
         <div
           className="left"
@@ -60,5 +56,3 @@ function Carousel() {
 }
 
 export default Carousel;
-
-//-----------------------------------------------------------//
