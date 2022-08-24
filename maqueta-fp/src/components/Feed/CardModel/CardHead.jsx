@@ -1,34 +1,11 @@
 import React from "react";
-import {
-  Avatar,
-  CardHeader,
-  createTheme,
-  ThemeProvider,
-  Typography,
-} from "@mui/material";
+import {Avatar,CardHeader,Typography} from "@mui/material";
 import profileImg from "../../../img/profile2.jpg";
 
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
+
 
 const CardHead = () => {
   return (
-    <ThemeProvider theme={theme}>
       <CardHeader
         disableTypography
         sx={{
@@ -60,7 +37,7 @@ const CardHead = () => {
           </Typography>
         }
       />
-    </ThemeProvider>
+   
   );
 };
 

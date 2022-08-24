@@ -1,14 +1,16 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { PanelRight, BoxInputs } from "../Login.style";
-import ButtonLogin from "./ButtonLogin";
+import { LeftPanel, BoxInputs } from "../Signup.style";
+import ButtonSignup from "./ButtonSignup";
 import HomeIconButton from "./HomeIconButton";
 import InputEmail from "./InputEmail";
+import InputName from "./InputName";
 import InputPassword from "./InputPassword";
+import SplitButtonCountry from "./SplitButtonCountry";
 
-function RightPanelMain() {
+function SidePanelMain() {
   return (
-    <PanelRight>
+    <LeftPanel>
       <HomeIconButton />
 
       <BoxInputs>
@@ -36,22 +38,22 @@ function RightPanelMain() {
             color: { xs: "white.main", sm: "black" },
           }}
         >
-          Need a{" "}
+          If you already have a{" "}
           <Typography variant="span" sx={{ color: "secondary.main" }}>
             CyClick{" "}
           </Typography>{" "}
-          account? Create an account{" "}
+          account, log in{" "}
           <Typography variant="span" sx={{ color: "secondary.main" }}>
-          <Link to='/sign-up'>here</Link>
+            <Link to="/login"> here.</Link>
           </Typography>
         </Typography>
-
         <InputEmail />
+        <InputName />
         <InputPassword />
-        <ButtonLogin />
+        <ButtonSignup />
       </BoxInputs>
-    </PanelRight>
+    </LeftPanel>
   );
 }
 
-export default RightPanelMain;
+export default SidePanelMain;

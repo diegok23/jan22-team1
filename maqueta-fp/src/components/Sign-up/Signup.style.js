@@ -1,15 +1,27 @@
 import { Box, Paper, styled, Button, TextField } from "@mui/material";
-import bg from "../../img/login-bg-mobile.JPG";
-import bgsb from "../../img/sidebar-login-bg.JPG";
+import bgsb from "../../img/sign-up-banner.jpg";
 
 /*RIGHT PANEL CONTAINER*/
-export const PanelRight = styled(Paper)(({ theme }) => ({
+export const RightPanel = styled(Paper)(({ theme }) => ({
+  backgroundImage: `url(${bgsb})`,
+  backgroundSize: "cover",
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+  width: "50%",
+  height: "100vh",
+  [theme.breakpoints.only("xs")]: {
+    display: "none",
+  },
+}));
+
+/*SIDE PANEL CONTAINER*/
+export const LeftPanel = styled(Paper)(({ theme }) => ({
   position: "relative",
   textAlign: "center",
   width: "50%",
   [theme.breakpoints.down("sm")]: {
     width: "100%",
-    backgroundImage: `url(${bg})`,
+    backgroundImage: `url(${bgsb})`,
     backgroundSize: "cover",
     backgroundPosition: " center",
     backgroundRepeat: "no-repeat",
@@ -25,7 +37,7 @@ export const PanelRight = styled(Paper)(({ theme }) => ({
 export const BoxHomeIcon = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "3%",
-  right: "5%",
+  left: "5%",
 }));
 
 /*BUTTON HOME */
@@ -47,7 +59,6 @@ export const BoxInputs = styled(Box)(({ theme }) => ({
     backgroundColor: "rgba(0,0,0,0.6)",
     height: "auto",
     borderRadius: "15px",
-
   },
   [theme.breakpoints.up("sm")]: {
     backgroundColor: "transparent",
@@ -56,10 +67,8 @@ export const BoxInputs = styled(Box)(({ theme }) => ({
   },
   [theme.breakpoints.up("lg")]: {
     width: "60%",
-
   },
 }));
-
 
 /*TEXT FIELD FOR EMAIL AND PASSWORD */
 export const Input = styled(TextField)(({ theme }) => ({
@@ -74,25 +83,40 @@ export const Input = styled(TextField)(({ theme }) => ({
   },
 }));
 
-/*LOGIN BUTTON */
-export const LoginButton = styled(Button)(({ theme }) => ({
+/*TEXT FIELD FOR FIRST NAME */
+export const InputDoubleLeft = styled(TextField)(({ theme }) => ({
+  input: { color: theme.palette.secondary.main },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: theme.palette.secondary.main,
+  },
+  width: "28%",
+  marginRight: "2%",
+  marginTop: "30px",
+  [theme.breakpoints.down("sm")]: {
+    width: "40%",
+  },
+}));
+
+/*TEXT FIELD FOR LAST NAME */
+export const InputDoubleRight = styled(TextField)(({ theme }) => ({
+  input: { color: theme.palette.secondary.main },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: theme.palette.secondary.main,
+  },
+  width: "28%",
+  marginLeft: "2%",
+  marginTop: "30px",
+  [theme.breakpoints.down("sm")]: {
+    width: "40%",
+  },
+}));
+
+/*SIGN UP BUTTON */
+export const SignUpButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   "&:hover": {},
   marginTop: "30px",
   marginBottom: "20px",
   textTransform: "none",
   width: "22%",
-}));
-
-/*LEFT PANEL CONTAINER*/
-export const LeftPanel = styled(Paper)(({ theme }) => ({
-  backgroundImage: `url(${bgsb})`,
-  backgroundSize: "cover",
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  width: "50%",
-  height: "100vh",
-  [theme.breakpoints.only("xs")]: {
-display:'none'
-  },
 }));

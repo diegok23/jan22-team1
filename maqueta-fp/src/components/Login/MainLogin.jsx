@@ -5,7 +5,7 @@ import RightPanel from "./RightPanel/RightPanelMain";
 function MainLogin() {
   return (
     <Box>
-      <Stack direction="row" justifyContent="space-between">
+      <Stack direction="row" >
         <SidePanel />
         <RightPanel />
       </Stack>

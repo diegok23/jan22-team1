@@ -3,7 +3,8 @@ import MainLanding from "./components/Landing/MainLanding";
 import MainLogin from "./components/Login/MainLogin";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
-import theme from './theme.js'
+import theme from "./theme.js";
+import MainSignUp from "./components/Sign-up/MainSignUp";
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<MainLanding />} />
         <Route path="/login" element={<MainLogin />} />
         <Route path="/feed" element={<Mainfeed />} />
+        <Route path="/sign-up" element={<MainSignUp />} />
       </Routes>
     </ThemeProvider>
   );
