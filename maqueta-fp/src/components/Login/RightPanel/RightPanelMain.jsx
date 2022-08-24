@@ -1,4 +1,4 @@
-import { Button, styled, Typography } from "@mui/material";
+import {Typography } from "@mui/material";
 import { PanelRight, BoxInputs } from "../Login.style";
 import ButtonLogin from "./ButtonLogin";
 import HomeIconButton from "./HomeIconButton";
@@ -44,7 +44,6 @@ function RightPanelMain() {
             here.
           </Typography>
         </Typography>
-
         <InputEmail />
         <InputPassword />
         <ButtonLogin />

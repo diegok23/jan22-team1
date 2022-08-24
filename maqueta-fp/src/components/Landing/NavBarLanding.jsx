@@ -1,35 +1,10 @@
 import React from "react";
-import {
-  AppBar,
-  createTheme,
-  InputBase,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-  Box,
-  Button,
-} from "@mui/material";
+import {AppBar,InputBase,Toolbar,Typography,Box,Button} from "@mui/material";
 import styled from "@emotion/styled";
 import { Person, DirectionsBike, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const themePalette = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
+
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -100,7 +75,7 @@ const MobileIcons = styled(Box)(({ theme }) => ({
 
 const NavBarLanding = () => {
   return (
-    <ThemeProvider theme={themePalette}>
+   
       <AppBar position="sticky">
         <StyledToolbar variant="dense" >
           <Typography
@@ -160,7 +135,6 @@ const NavBarLanding = () => {
           </MobileIcons>
         </StyledToolbar>
       </AppBar>
-    </ThemeProvider>
   );
 };
 

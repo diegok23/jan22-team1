@@ -1,26 +1,9 @@
 import bg from "../../img/banner-section-1.jpg";
 import { Paper, Typography, Box } from "@mui/material";
-import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import {styled} from "@mui/material/styles";
 import { ExpandCircleDownOutlined, Minimize } from "@mui/icons-material";
 
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-      light: "#BDBDBD",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
+
 const Section = styled(Paper)(({ theme }) => ({
   position: "relative",
   backgroundImage: `url(${bg})`,
@@ -55,7 +38,7 @@ const ContentSection = styled(Paper)(({ theme }) => ({
 }));
 function Section1() {
   return (
-    <ThemeProvider theme={theme}>
+    
       <Section>
         <Box sx={{ position: "absolute", top: "50%", left: "3%" }}>
           <ExpandCircleDownOutlined
@@ -125,7 +108,7 @@ function Section1() {
           <Box width="70%">
             <Typography
               variant="p"
-              color="white.light"
+              color="white.main"
               lineHeight="1.5rem"
               sx={{
                 wordSpacing: "0.1rem",
@@ -140,7 +123,7 @@ function Section1() {
           </Box>
         </ContentSection>
       </Section>
-    </ThemeProvider>
+   
   );
 }
 

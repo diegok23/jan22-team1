@@ -9,7 +9,7 @@ function MainLanding() {
   return (
     <Box sx={{ width: "100%" }}>
       <Navbar />
-      <Stack spacing={1} justifyContent="space-between">
+      <Stack spacing={1} >
         <Section1 />
         <Section2 />
         <Section3 />
