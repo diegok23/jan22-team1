@@ -1,9 +1,24 @@
 import bg from '../../img/banner-section-2.JPG'
 import { Box, InputBase, Paper, Typography } from "@mui/material";
-import {styled} from "@mui/material/styles";
+import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
 import {Search} from '@mui/icons-material';
-import theme from '../../theme'
-
+const theme = createTheme({
+  palette: {
+    type: "light",
+    primary: {
+      main: "#202020",
+    },
+    secondary: {
+      main: "#15d4be",
+    },
+    white: {
+      main: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: "Nunito, sans-serif",
+  },
+});
 const Section = styled(Paper)(({ theme }) => ({
   position: "relative",
   padding: theme.spacing(1),
@@ -82,7 +97,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }));
 function Section2() {
   return (
-
+    <ThemeProvider theme={theme}>
       <Section>
       <ContentSection  sx={{boxShadow:0}}>
           <Box >
@@ -109,7 +124,7 @@ function Section2() {
           </Box>
         </ContentSection>
       </Section>
-
+    </ThemeProvider>
   );
 }
 
