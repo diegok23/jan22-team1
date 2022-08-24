@@ -1,36 +1,9 @@
 import React, { useState } from "react";
 import {
-  AppBar,
-  createTheme,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-  Box,
-  Avatar,
-  Button,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+  AppBar,Toolbar,Typography,Box,Avatar,Button,Menu,MenuItem} from "@mui/material";
 import styled from "@emotion/styled";
 import { DirectionsBike,Logout } from "@mui/icons-material";
 
-const themePalette = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -69,7 +42,7 @@ const MobileIcons = styled(Box)(({ theme }) => ({
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <ThemeProvider theme={themePalette}>
+   
       <AppBar position="fixed">
         <StyledToolbar variant="dense">
           <Typography
@@ -130,7 +103,6 @@ const Navbar = () => {
           <MenuItem>Logout</MenuItem>
         </Menu>
       </AppBar>
-    </ThemeProvider>
   );
 };
 
