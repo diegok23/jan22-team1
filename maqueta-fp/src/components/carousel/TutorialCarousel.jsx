@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import "./TutorialCarousel.css";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { ArrowBackIos } from "@mui/icons-material";
+import { ArrowForwardIos } from "@mui/icons-material";
 
 import Page1 from "./Tutorial-Carousel-IMG/Tutorial page 1.png";
 import Page2 from "./Tutorial-Carousel-IMG/Tutorial page 2.png";
 import Page3 from "./Tutorial-Carousel-IMG/Tutorial page 3.png";
 
 const images = [
-  { title: "San Diego", subtitle: "This is San Diego", img: Page1 },
   {
-    title: "Salvador, Brazil",
-    subtitle: "The Best City in the World",
+    title: "AA",
+    subtitle: "aa",
+    img: Page1,
+  },
+  {
+    title: "AB",
+    subtitle: "ab",
     img: Page2,
   },
   {
-    title: "UBC (Vancouver)",
-    subtitle: "The University of British Columbia",
+    title: "AC",
+    subtitle: "ac",
     img: Page3,
   },
 ];
@@ -36,7 +40,7 @@ function Carousel() {
             currImg > 0 && setCurrImg(currImg - 1);
           }}
         >
-          <ArrowBackIosIcon style={{ fontSize: 30 }} />
+          <ArrowBackIos style={{ fontSize: 30 }} />
         </div>
         <div className="center">
           <h1>{images[currImg].title}</h1>
@@ -48,7 +52,7 @@ function Carousel() {
             currImg < images.length - 1 && setCurrImg(currImg + 1);
           }}
         >
-          <ArrowForwardIosIcon style={{ fontSize: 30 }} />
+          <ArrowForwardIos style={{ fontSize: 30 }} />
         </div>
       </div>
     </div>
