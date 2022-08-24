@@ -1,8 +1,32 @@
 import React from "react";
-import {Box,Button,CardActions,Checkbox} from "@mui/material";
+import {
+  Box,
+  Button,
+  CardActions,
+  Checkbox,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
 import { Directions, BookmarkBorder, Bookmark } from "@mui/icons-material";
 import styled from "@emotion/styled";
 
+const theme = createTheme({
+  palette: {
+    type: "light",
+    primary: {
+      main: "#202020",
+    },
+    secondary: {
+      main: "#15d4be",
+    },
+    white: {
+      main: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: "Nunito, sans-serif",
+  },
+});
 const ButtonPer = styled(Button)(({ theme }) => ({
   textTransform: "capitalize",
   marginLeft: "10px",
@@ -17,37 +41,39 @@ const ButtonPer = styled(Button)(({ theme }) => ({
 }));
 const ActionsButtonsCard = () => {
   return (
-    <CardActions
-      disableSpacing
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        borderTop: "solid",
-        borderWidth: "1px",
-        borderColor: "#bdbdbd",
-        backgroundColor: "secondary.main",
-      }}
-    >
-      <Box sx={{ display: "flex" }}>
-        <ButtonPer
-          startIcon={
-            <Checkbox
-              sx={{ padding: "0px" }}
-              icon={<BookmarkBorder sx={{ color: "white.main" }} />}
-              checkedIcon={<Bookmark sx={{ color: "yellow" }} />}
-            />
-          }
-        >
-          Save
-        </ButtonPer>
-      </Box>
+    <ThemeProvider theme={theme}>
+      <CardActions
+        disableSpacing
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          borderTop: "solid",
+          borderWidth: "1px",
+          borderColor: "#bdbdbd",
+          backgroundColor: "secondary.main",
+        }}
+      >
+        <Box sx={{ display: "flex" }}>
+          <ButtonPer
+            startIcon={
+              <Checkbox
+                sx={{ padding: "0px" }}
+                icon={<BookmarkBorder sx={{ color: "white.main" }} />}
+                checkedIcon={<Bookmark sx={{ color: "yellow" }} />}
+              />
+            }
+          >
+            Save
+          </ButtonPer>
+        </Box>
 
-      <Box sx={{ display: "flex" }}>
-        <ButtonPer startIcon={<Directions sx={{ color: "white.main" }} />}>
-          Go to map
-        </ButtonPer>
-      </Box>
-    </CardActions>
+        <Box sx={{ display: "flex" }}>
+          <ButtonPer startIcon={<Directions sx={{ color: "white.main" }} />}>
+            Go to map
+          </ButtonPer>
+        </Box>
+      </CardActions>
+    </ThemeProvider>
   );
 };
 

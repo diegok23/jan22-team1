@@ -1,21 +1,40 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
 
 import CardMain from "./CardModel/CardMain";
+const theme = createTheme({
+  palette: {
+    type: "light",
+    primary: {
+      main: "#202020",
+    },
+    secondary: {
+      main: "#15d4be",
+    },
+    white: {
+      main: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: "Nunito, sans-serif",
+  },
+});
 
 const Feed = () => {
   return (
-    <Box
-      sx={{
-        color: "white.main",
-      }}
-      flex={4}
-      paddingX={{ md: 5, lg: 10, xl: 10 }}
-    >
-      <CardMain />
-      <CardMain />
-      <CardMain />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          color: "white.main",
+        }}
+        flex={4}
+        paddingX={{md:5, lg:10, xl:10 }}
+      >
+        <CardMain />
+        <CardMain />
+        <CardMain />
+      </Box>
+    </ThemeProvider>
   );
 };
 
