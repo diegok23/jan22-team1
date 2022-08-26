@@ -1,36 +1,8 @@
 import React, { useState } from "react";
-import {
-  AppBar,
-  createTheme,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-  Box,
-  Avatar,
-  Button,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import {AppBar,Toolbar,Typography,Box,Avatar,Button,Menu,MenuItem} from "@mui/material";
 import styled from "@emotion/styled";
-import { DirectionsBike,Logout } from "@mui/icons-material";
+import { DirectionsBike, Logout } from "@mui/icons-material";
 
-const themePalette = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
@@ -69,68 +41,62 @@ const MobileIcons = styled(Box)(({ theme }) => ({
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <ThemeProvider theme={themePalette}>
-      <AppBar position="fixed">
-        <StyledToolbar variant="dense">
-          <Typography
-            variant="h6"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Cy
-            <Typography variant="h6" component="span" color="secondary">
-              Click
-            </Typography>
+    <AppBar position="fixed">
+      <StyledToolbar variant="dense">
+        <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
+          Cy
+          <Typography variant="h6" component="span" color="secondary">
+            Click
           </Typography>
-          <DirectionsBike
-            color="secondary"
-            sx={{ display: { xs: "block", sm: "none" } }}
-          />
-          <Box sx={{ flexGrow: 1 }} />
+        </Typography>
+        <DirectionsBike
+          color="secondary"
+          sx={{ display: { xs: "block", sm: "none" } }}
+        />
+        <Box sx={{ flexGrow: 1 }} />
 
-
-          <Icons>
-            <ButtonLogin>
-              <Avatar
-                sx={{ width: "25px", height: "25px" }}
-                src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
-              ></Avatar>
-            </ButtonLogin>
-            <ButtonLogin>
-              <Logout
-                color="secondary"
-                fontSize="small"
-                sx={{ padding: "0px" }}
-              />
-            </ButtonLogin>
-          </Icons>
-
-          <MobileIcons onClick={(e) => setOpen(true)}>
+        <Icons>
+          <ButtonLogin>
             <Avatar
-              sx={{ width: "30px", height: "30px" }}
+              sx={{ width: "25px", height: "25px" }}
               src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
             ></Avatar>
-          </MobileIcons>
-        </StyledToolbar>
-        <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
-          open={open}
-          onClose={(e) => setOpen(false)}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </Menu>
-      </AppBar>
-    </ThemeProvider>
+          </ButtonLogin>
+          <ButtonLogin>
+            <Logout
+              color="secondary"
+              fontSize="small"
+              sx={{ padding: "0px" }}
+            />
+          </ButtonLogin>
+        </Icons>
+
+        <MobileIcons onClick={(e) => setOpen(true)}>
+          <Avatar
+            sx={{ width: "30px", height: "30px" }}
+            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
+          ></Avatar>
+        </MobileIcons>
+      </StyledToolbar>
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        open={open}
+        onClose={(e) => setOpen(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
+    </AppBar>
   );
 };
 

@@ -1,23 +1,7 @@
 import { Box, Paper, Typography } from "@mui/material";
-import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
+import {styled} from "@mui/material/styles";
 import bg from '../../img/banner-section-3.JPG'
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
+
 const Section = styled(Paper)(({ theme }) => ({
   backgroundImage: `url(${bg})`,
   backgroundSize: "cover",
@@ -53,7 +37,6 @@ const ContentSection = styled(Paper)(({ theme }) => ({
 
 function Section3() {
   return (
-    <ThemeProvider theme={theme}>
       <Section>
       <ContentSection sx={{boxShadow:0}}>
           <Box width='100%'  >
@@ -78,7 +61,6 @@ function Section3() {
           </Box>
         </ContentSection>
       </Section>
-    </ThemeProvider>
   );
 }
 

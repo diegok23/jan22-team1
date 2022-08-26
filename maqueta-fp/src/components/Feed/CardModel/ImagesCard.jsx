@@ -1,31 +1,15 @@
 import React from "react";
-import { CardMedia, createTheme, Stack, ThemeProvider } from "@mui/material";
+import { CardMedia,Stack } from "@mui/material";
 import img1 from "../../../img/invitation1.jpg";
 import img2 from "../../../img/invitation2.jpg";
 import img3 from "../../../img/fondo7.jpg";
 import { Box } from "@mui/system";
 
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
+
 
 const ImagesCard = () => {
   return (
-    <ThemeProvider theme={theme}>
+    
       <Box display="flex" height="50vh" sx={{backgroundColor:'#fff'}}>
         <Stack
           sx={{
@@ -69,7 +53,7 @@ const ImagesCard = () => {
           />
         </Stack>
       </Box>
-    </ThemeProvider>
+
   );
 };
 

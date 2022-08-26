@@ -1,31 +1,9 @@
 import React from "react";
-import {
-  CardContent,
-  createTheme,
-  ThemeProvider,
-  Typography,
-} from "@mui/material";
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#202020",
-    },
-    secondary: {
-      main: "#15d4be",
-    },
-    white: {
-      main: "#fff",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito, sans-serif",
-  },
-});
+import {CardContent,Typography} from "@mui/material";
 
 const DescriptionCard = () => {
   return (
-    <ThemeProvider theme={theme}>
+
       <CardContent sx={{backgroundColor:'#fff', height:'40vh' , overflowY:'auto'}}>
         <Typography variant="body2" color="text.secondary" sx={{fontSize:{sm:'15px',md:'15px', lg:'18px'}, paddingX:{xs:'0px',sm:'8px',lg:'20px'} }} >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, quisquam saepe velit obcaecati quasi voluptatum quos beatae eaque quo earum numquam possimus ratione expedita quas, pariatur, sunt non distinctio voluptas.
@@ -40,7 +18,7 @@ const DescriptionCard = () => {
           Quo labore ipsa in debitis! Perferendis ipsa et deserunt ipsam atque fugit dolor numquam aspernatur dolorum, a eius similique temporibus nulla incidunt esse placeat cumque ab voluptatibus blanditiis! Possimus, fugiat.
         </Typography>
       </CardContent>
-    </ThemeProvider>
+
   );
 };
 
