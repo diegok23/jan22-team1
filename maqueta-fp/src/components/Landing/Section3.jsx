@@ -1,44 +1,10 @@
-import { Box, Paper, Typography } from "@mui/material";
-import {styled} from "@mui/material/styles";
-import bg from '../../img/banner-section-3.JPG'
-
-const Section = styled(Paper)(({ theme }) => ({
-  backgroundImage: `url(${bg})`,
-  backgroundSize: "cover",
-  padding: theme.spacing(1),
-  textAlign: "center",
-  height: "100vh",
-  [theme.breakpoints.down("sm")]: {
-    backgroundColor:'	#DEDEDE',
-    backgroundSize: "500px 300px",
-    backgroundPosition: "center bottom",
-    backgroundRepeat: "no-repeat",
-   
-  }
-}));
-
-const ContentSection = styled(Paper)(({ theme }) => ({
-  width: "100%",
-  height: "20%",
-  backgroundColor: "transparent",
-  textAlign: "center",
-  marginTop: "50px",
-  marginLeft:'20px',
-  [theme.breakpoints.down("md")]: {
-    width: "auto",
-    display: "flex",
-    flexDirection: "column",
-    padding: "0px",
-    alignItems: "center",
-    marginLeft:'0px',
-    marginTop:'50px'
-  },
-}));
+import { Box,Typography } from "@mui/material";
+import { Content3Container, Section3Container } from "./Sections.style";
 
 function Section3() {
   return (
-      <Section>
-      <ContentSection sx={{boxShadow:0}}>
+      <Section3Container>
+      <Content3Container >
           <Box width='100%'  >
             <Typography
               variant="h3"
@@ -59,8 +25,8 @@ function Section3() {
               why we choose the best cycling routes for you.
             </Typography>
           </Box>
-        </ContentSection>
-      </Section>
+        </Content3Container>
+      </Section3Container>
   );
 }
 
