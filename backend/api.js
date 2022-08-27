@@ -14,10 +14,10 @@ const getUsers = (req, res) => {
   });
 };
 
-//INFORMACION BASICA DEL USUARIO
+//INFORMACION BASICA DEL USUARIO (PROFILE)
 const getUserProfile = (req, res) => {
   const userId = req.params.userId;
-  const query = 'SELECT name, username, email, city, description FROM users WHERE id=$1';
+  const query = `SELECT firstname||' '||lastname AS username, email, country, city, description, imgProfile FROM users WHERE id=$1`;
   database.pool
     .query(query, [userId])
     .then((result) => res.json(result.rows))
