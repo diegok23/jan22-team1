@@ -90,11 +90,10 @@ const postRoute = (req, res) => {
     .catch((e) => console.error(e));
 };
 
-//MARCAR RUTA COMO FAVORITA
+//MARCAR RUTA COMO FAVORITA (GUARDADA)
 const postFavoriteRoute = (req, res) => {
   const userId = req.body.userId;
   const routeId = req.params.routeId;
-
   database.pool
     .query(`INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`, [userId, routeId])
     .then(() => res.send(`Route marked as favorite!`))
