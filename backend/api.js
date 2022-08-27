@@ -24,15 +24,14 @@ const getUserProfile = (req, res) => {
     .catch((e) => console.error(e));
 };
 
-//LISTA DE RUTAS
+//LISTA DE RUTAS (FEED)
 const getRoutes = (req, res) => {
-  database.pool.query(
-    `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
-  INNER JOIN users AS u ON r.userId=u.id`,
-    (error, result) => {
-      res.json(result.rows);
-    }
-  );
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  INNER JOIN users AS u ON r.userId=u.id`;
+  database.pool
+    .query(query)
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
 };
 
 //INFORMACION DE UNA RUTA
