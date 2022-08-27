@@ -49,7 +49,7 @@ const getRoutesById = (req, res) => {
 //BUSQUEDA DE UNA RUTA
 const getRoutesBySearch = (req, res) => {
   const searchString = req.query.s;
-  const query = `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
   database.pool
