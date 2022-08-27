@@ -94,8 +94,9 @@ const postRoute = (req, res) => {
 const postFavoriteRoute = (req, res) => {
   const userId = req.body.userId;
   const routeId = req.params.routeId;
+  const query = `INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`
   database.pool
-    .query(`INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`, [userId, routeId])
+    .query(query, [userId, routeId])
     .then(() => res.send(`Route marked as favorite!`))
     .catch((e) => console.error(e));
 };
@@ -103,14 +104,12 @@ const postFavoriteRoute = (req, res) => {
 //MOSTRAR RUTAS FAVORITAS DE UN USUARIO
 const getFavoriteRoutes = (req, res) => {
   const userId = req.params.userId;
-
+  const query = `SELECT r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM favRoutes AS f
+  INNER JOIN users AS u ON f.userID=u.id
+  INNER JOIN routes AS r ON f.routeID=r.id
+  WHERE f.userId=$1 ORDER BY routeId`
   database.pool
-    .query(
-      `SELECT r.country, r.city, r.routeName, r.length, r.description, r.url, r.created_at FROM favRoutes AS f
-    INNER JOIN users AS u ON f.userID=u.id
-    INNER JOIN routes AS r ON f.routeID=r.id
-    WHERE f.userId=${userId} ORDER BY routeId`
-    )
+    .query(query, [userId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
