@@ -1,4 +1,4 @@
-import Navbar from "./NavBarLanding";
+import Navbar from "../Navbar/NavBar";
 import Section1 from "./Section1";
 import Section2 from "./Section2";
 import Section3 from "./Section3";
@@ -9,7 +9,7 @@ function MainLanding() {
   return (
     <Box sx={{ width: "100%" }}>
       <Navbar />
-      <Stack spacing={1} justifyContent="space-between">
+      <Stack>
         <Section1 />
         <Section2 />
         <Section3 />

@@ -1,44 +1,13 @@
-import bg from "../../img/banner-section-1.jpg";
-import { Paper, Typography, Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Typography, Box } from "@mui/material";
 import { ExpandCircleDownOutlined, Minimize } from "@mui/icons-material";
+import { SectionContainer, ContentContainer, RightArrowBox, LeftArrowBox, MinimizeIconsBox } from "./Sections.style";
 
-const Section = styled(Paper)(({ theme }) => ({
-  position: "relative",
-  backgroundImage: `url(${bg})`,
-  backgroundSize: "cover",
-  padding: theme.spacing(1),
-  height: "100vh",
-  display: "flex",
-  justifyContent: "flex-end",
-  [theme.breakpoints.down("md")]: {
-    backgroundColor: "	#000000",
-    backgroundSize: "500px 400px",
-    backgroundPosition: "center bottom",
-    backgroundRepeat: "no-repeat",
-  },
-}));
 
-const ContentSection = styled(Paper)(({ theme }) => ({
-  width: "30%",
-  height: "20%",
-  backgroundColor: "transparent",
-  paddingRight: "20px",
-  textAlign: "start",
-  marginTop: "100px",
-  [theme.breakpoints.down("md")]: {
-    width: "auto",
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    padding: "0px",
-    alignItems: "center",
-  },
-}));
 function Section1() {
   return (
-    <Section>
-      <Box sx={{ position: "absolute", top: "50%", left: "3%" }}>
+    <SectionContainer>
+      
+      <LeftArrowBox>
         <ExpandCircleDownOutlined
           color="white"
           sx={{
@@ -46,8 +15,9 @@ function Section1() {
             fontSize: { xs: "40px", md: "80px" },
           }}
         />
-      </Box>
-      <Box sx={{ position: "absolute", top: "50%", right: "3%" }}>
+      </LeftArrowBox>
+     
+      <RightArrowBox>
         <ExpandCircleDownOutlined
           color="secondary"
           sx={{
@@ -55,23 +25,18 @@ function Section1() {
             fontSize: { xs: "40px", md: "80px" },
           }}
         />
-      </Box>
+      </RightArrowBox>
 
-      <Box
-        sx={{
-          position: "absolute",
-          top: { xs: "85%", md: "80%" },
-          right: { xs: "35%", sm: "40%", md: "42%" },
-        }}
-      >
+      <MinimizeIconsBox>
         <Minimize
           color="secondary"
           sx={{ fontSize: { xs: "40px", md: "80px" } }}
         />
         <Minimize color="white" sx={{ fontSize: { xs: "40px", md: "80px" } }} />
         <Minimize color="white" sx={{ fontSize: { xs: "40px", md: "80px" } }} />
-      </Box>
-      <ContentSection>
+      </MinimizeIconsBox>
+      
+      <ContentContainer>
         <Box>
           <Typography
             variant="h5"
@@ -103,7 +68,7 @@ function Section1() {
         <Box width="70%">
           <Typography
             variant="p"
-            color="white.light"
+            color="white.main"
             lineHeight="1.5rem"
             sx={{
               wordSpacing: "0.1rem",
@@ -116,8 +81,9 @@ function Section1() {
             quam, harum autem quibusdam ea ipsam.
           </Typography>
         </Box>
-      </ContentSection>
-    </Section>
+      </ContentContainer>
+    
+    </SectionContainer>
   );
 }
 
