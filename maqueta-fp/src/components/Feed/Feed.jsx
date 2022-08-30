@@ -12,8 +12,8 @@ const Feed = () => {
       paddingX={{ md: 5, lg: 10, xl: 10 }}
     >
       <CardMain />
-      <CardMain />
-      <CardMain />
+      {/* <CardMain />
+      <CardMain /> */}
     </Box>
   );
 };
