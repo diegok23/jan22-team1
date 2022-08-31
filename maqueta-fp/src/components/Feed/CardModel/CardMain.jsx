@@ -9,9 +9,8 @@ import { Avatar, CardHeader, Typography, Card, CardContent } from "@mui/material
 import profileImg from "../../../img/profile2.jpg";
 import { useEffect, useState } from "react";
 
+
 const CardPer = styled(Card)(({ theme }) => ({
-
-
   borderRadius: '0px',
   [theme.breakpoints.up("md")]: {
     borderRadius: '30px',
@@ -34,11 +33,10 @@ const CardMain = () => {
 
   return (
     <>
-      {feeds.map((feed) => (
+     {feeds.map(feed => 
+      
 
         <CardPer>
-
-
 
           {/* //// Route name //// */}
           <CardHeader
@@ -49,7 +47,7 @@ const CardMain = () => {
             }}
             avatar={<Avatar src={profileImg}></Avatar>}
             title={
-               /// route name
+              /// route name
               <Typography
                 component="p"
                 variant="p"
@@ -59,7 +57,8 @@ const CardMain = () => {
                   fontFamily: "Raleway",
                 }}
               >
-                {feed.routename}
+                
+                {feed.routename} 
               </Typography>
             }
 
@@ -70,19 +69,18 @@ const CardMain = () => {
                 variant="p"
                 sx={{ color: "white.main", fontFamily: "Nunito Sans", fontSize: { xs: "0.6rem", sm: "0.7rem", md: "0.8rem" } }}
               >
-                Barcelona, Spain
+                {feed.city}{feed.country}
               </Typography>
             }
           />
 
-          {/* ////  description //// */}
-          {/* {feeds.map((feed) => ( */}
+           
           <CardContent sx={{ backgroundColor: '#fff', height: '40vh', overflowY: 'auto' }}>
             <Typography variant="body2" color="text.secondary" sx={{ fontSize: { sm: '15px', md: '15px', lg: '18px' }, paddingX: { xs: '0px', sm: '8px', lg: '20px' } }} >
               {feed.description}
             </Typography>
           </CardContent>
-          {/* // ))} */}
+
 
           <CardContent sx={{ backgroundColor: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingX: { lg: '30px' } }}>
             <Typography fontStyle='italic' variant="body2" color="text.secondary" sx={{ fontSize: { sm: '15px', md: '15px', lg: '18px' }, fontWeight: '700' }} >
@@ -91,15 +89,16 @@ const CardMain = () => {
               {/* route type */}
               <Typography variant="spam" fontStyle='italic'>Mountain.
 
-              {/* route length */}
-              </Typography> <Typography variant="spam">5,5 Km</Typography>
+                {/* route length */}
+              </Typography> <Typography variant="spam">{feed.length}</Typography>
             </Typography>
-            <Typography color="text.secondary" variant="body2" sx={{ fontSize: { sm: '15px', md: '15px', lg: '18px' }, fontWeight: '700' }}>22/08/2022</Typography>
+            <Typography color="text.secondary" variant="body2" sx={{ fontSize: { sm: '15px', md: '15px', lg: '18px' }, fontWeight: '700' }}>{feed.created_at}</Typography>
           </CardContent>
 
           <ActionsButtonsCard />
         </CardPer>
-      ))} </>
+        )}   
+    </>
   );
 };
 
