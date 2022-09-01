@@ -14,35 +14,34 @@ const getUsers = (req, res) => {
   });
 };
 
-//INFORMACION BASICA DEL USUARIO
+//INFORMACION BASICA DEL USUARIO (PROFILE)
 const getUserProfile = (req, res) => {
   const userId = req.params.userId;
-  const query = 'SELECT name, username, email, city, description FROM users WHERE id=$1';
+  const query = `SELECT firstname||' '||lastname AS username, email, country, city, description, imgProfile FROM users WHERE id=$1`;
   database.pool
     .query(query, [userId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
 
-//LISTA DE RUTAS
+//LISTA DE RUTAS (FEED)
 const getRoutes = (req, res) => {
-  database.pool.query(
-    `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
-  INNER JOIN users AS u ON r.userId=u.id`,
-    (error, result) => {
-      res.json(result.rows);
-    }
-  );
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  INNER JOIN users AS u ON r.userId=u.id`;
+  database.pool
+    .query(query)
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
 };
 
-//INFORMACION DE UNA RUTA
+//INFORMACION DE UNA RUTA (BY ID)
 const getRoutesById = (req, res) => {
   const routeId = req.params.routeId;
-  const query = `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
-  WHERE r.id=$1`;
+  WHERE r.id=${routeId}`;
   database.pool
-    .query(query, [routeId])
+    .query(query)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
@@ -50,7 +49,7 @@ const getRoutesById = (req, res) => {
 //BUSQUEDA DE UNA RUTA
 const getRoutesBySearch = (req, res) => {
   const searchString = req.query.s;
-  const query = `SELECT u.username AS created_by, r.routeName, r.description, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
   database.pool
@@ -91,13 +90,13 @@ const postRoute = (req, res) => {
     .catch((e) => console.error(e));
 };
 
-//MARCAR RUTA COMO FAVORITA
+//MARCAR RUTA COMO FAVORITA (GUARDADA)
 const postFavoriteRoute = (req, res) => {
   const userId = req.body.userId;
   const routeId = req.params.routeId;
-
+  const query = `INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`
   database.pool
-    .query(`INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`, [userId, routeId])
+    .query(query, [userId, routeId])
     .then(() => res.send(`Route marked as favorite!`))
     .catch((e) => console.error(e));
 };
@@ -105,14 +104,12 @@ const postFavoriteRoute = (req, res) => {
 //MOSTRAR RUTAS FAVORITAS DE UN USUARIO
 const getFavoriteRoutes = (req, res) => {
   const userId = req.params.userId;
-
+  const query = `SELECT r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM favRoutes AS f
+  INNER JOIN users AS u ON f.userID=u.id
+  INNER JOIN routes AS r ON f.routeID=r.id
+  WHERE f.userId=$1 ORDER BY routeId`
   database.pool
-    .query(
-      `SELECT r.country, r.city, r.routeName, r.length, r.description, r.url, r.created_at FROM favRoutes AS f
-    INNER JOIN users AS u ON f.userID=u.id
-    INNER JOIN routes AS r ON f.routeID=r.id
-    WHERE f.userId=${userId} ORDER BY routeId`
-    )
+    .query(query, [userId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
