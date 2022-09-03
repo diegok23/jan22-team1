@@ -1,10 +1,8 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { PanelRight, BoxInputs } from "../Login.style";
-import ButtonLogin from "./ButtonLogin";
 import HomeIconButton from "./HomeIconButton";
-import InputEmail from "./InputEmail";
-import InputPassword from "./InputPassword";
+import Inputs from "./Inputs";
 
 function RightPanelMain() {
   return (
@@ -42,13 +40,15 @@ function RightPanelMain() {
           </Typography>{" "}
           account? Create an account{" "}
           <Typography variant="span" sx={{ color: "secondary.main" }}>
-          <Link style={{textDecoration:'none', color:'#15d4be'}} to='/sign-up'>here</Link>
+            <Link
+              style={{ textDecoration: "none", color: "#15d4be" }}
+              to="/sign-up"
+            >
+              here
+            </Link>
           </Typography>
         </Typography>
-
-        <InputEmail />
-        <InputPassword />
-        <ButtonLogin />
+        <Inputs />
       </BoxInputs>
     </PanelRight>
   );
