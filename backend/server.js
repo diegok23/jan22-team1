@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const api = require('./api');
-//const cors = require('cors');
+const cors = require('cors');
 const bodyParser = require('body-parser');
+const user = require('./user/routes/user');
 require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 
@@ -19,10 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(myLogger);
-//app.use(cors());
+app.use('/user', user);
+app.use(cors());
 
-require('./user/routes/auth.routes')(app);
-require('./user/routes/user.routes')(app);
 
 app.get('/', api.main);
 app.get('/search', api.getRoutesBySearch);
