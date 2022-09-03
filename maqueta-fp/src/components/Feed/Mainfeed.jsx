@@ -1,8 +1,9 @@
-import Navbar from "./Navbar";
+import Navbar from "../Navbar/NavbarAuth";
 import Feed from "./Feed";
 import { Box } from "@mui/system";
 import { Stack } from "@mui/material";
 import Banner from "./BannerSection/BannerMain";
+import Footer from "../Footer/FooterMain"
 
 function Mainfeed() {
   return (
@@ -17,6 +18,7 @@ function Mainfeed() {
         <Banner />
         <Feed />
       </Stack>
+      <Footer/>
     </Box>
   );
 }

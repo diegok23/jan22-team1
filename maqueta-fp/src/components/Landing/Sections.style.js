@@ -25,19 +25,22 @@ export const SectionContainer = styled(Paper)(({ theme }) => ({
 /*SECTION 1 CONTENT CONTAINER */
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
-  width: "30%",
+  width: "100%",
   height: "20%",
   backgroundColor: "transparent",
   paddingRight: "20px",
   textAlign: "start",
-  marginTop: "100px",
-  [theme.breakpoints.down("md")]: {
-    width: "auto",
+  marginTop: "18%",
+  display:'flex',
+  flexDirection:'column',
+  alignItems:'center',
+  [theme.breakpoints.down("sm")]: {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
     padding: "0px",
     alignItems: "center",
+    marginTop: "38%",
   },
 }));
 
@@ -84,7 +87,8 @@ export const GoButton = styled(Button)(({ theme }) => ({
   marginTop: "30px",
   marginBottom: "20px",
   textTransform: "none",
-  width: "22%",
+  width: "40%",
+  borderRadius:'40px 10px 40px 10px'
 }));
 
 /*SECTION 2 MAIN CONTAINER */
@@ -95,9 +99,9 @@ export const Section2Container = styled(Paper)(({ theme }) => ({
   height: "100vh",
   backgroundImage: `url(${bg2})`,
   backgroundSize: "cover",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     backgroundColor: "	#000000 ",
-    backgroundSize: "500px 400px",
+    backgroundSize: "900px 800px",
     backgroundPosition: "center bottom",
     backgroundRepeat: "no-repeat",
   },
@@ -150,7 +154,6 @@ export const Content3Container = styled(Box)(({ theme }) => ({
   backgroundColor: "transparent",
   textAlign: "center",
   marginTop: "50px",
-  marginLeft: "20px",
   boxShadow: "none",
   [theme.breakpoints.down("md")]: {
     width: "auto",

@@ -24,7 +24,7 @@ const NavBarLanding = () => {
           <ButtonLogin>
             <Typography variant="p">
               {" "}
-              <Link to="/sign-up"> Become a member</Link>
+              <Link style={{textDecoration:'none', color:'white', fontFamily:'Raleway'}} to="/sign-up"> Become a member</Link>
             </Typography>
           </ButtonLogin>
           <Typography variant="p" sx={{ fontSize: "0.875rem" }}>

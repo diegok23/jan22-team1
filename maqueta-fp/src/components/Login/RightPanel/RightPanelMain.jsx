@@ -42,7 +42,7 @@ function RightPanelMain() {
           </Typography>{" "}
           account? Create an account{" "}
           <Typography variant="span" sx={{ color: "secondary.main" }}>
-          <Link to='/sign-up'>here</Link>
+          <Link style={{textDecoration:'none', color:'#15d4be'}} to='/sign-up'>here</Link>
           </Typography>
         </Typography>
 

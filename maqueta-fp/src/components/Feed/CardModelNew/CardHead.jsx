@@ -9,7 +9,7 @@ const CardHead = () => {
       <CardHeader
         disableTypography
         sx={{
-          backgroundColor: "secondary.main",
+          backgroundColor:{xs:'primary.main', md:'secondary.main'} ,
           color: "white.main",
         }}
         avatar={<Avatar src={profileImg}></Avatar>}

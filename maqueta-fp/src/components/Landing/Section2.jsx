@@ -12,7 +12,7 @@ function Section2() {
             color="white.main"
             textTransform="uppercase"
             letterSpacing="0.3rem"
-            sx={{ fontSize: { xs: "1rem", md: "3rem" }, fontWeight: "500" }}
+            sx={{ fontSize: { xs: "1rem",sm:'1.5rem', md: "3rem" }, fontWeight: "500" }}
           >
             Find{" "}
             <Typography
@@ -26,8 +26,14 @@ function Section2() {
           </Typography>
           
           <GoButton>
-            <Link to='/feed'>
+            <Link style={{textDecoration:'none', color:'white', fontFamily:'Raleway'}} to='/feed'>
+              <Typography variant="h3"
+            color="white.main"
+            textTransform="uppercase"
+            letterSpacing="0.3rem"
+            sx={{ fontSize: { xs: "0.6rem",sm:'1rem', md: "2rem" }, fontWeight: "800" }}>
               Go to routes
+                </Typography> 
             </Link>
           </GoButton>
         </Box>

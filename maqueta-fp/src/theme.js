@@ -13,6 +13,10 @@ import { createTheme } from "@mui/material";
           main: '#fff',
         },
       }, 
+      shadows: ["none"],
+      typography:{
+        fontFamily:'Raleway'
+      }
 })
 
 theme.typography.h2 = {

@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme.js";
 import MainSignUp from "./components/Sign-up/MainSignUp";
+import MainProfile from "./components/Profile/MainProfile";
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<MainLogin />} />
         <Route path="/feed" element={<Mainfeed />} />
         <Route path="/sign-up" element={<MainSignUp />} />
+        <Route path="/profile" element={<MainProfile />} />
       </Routes>
     </ThemeProvider>
   );
