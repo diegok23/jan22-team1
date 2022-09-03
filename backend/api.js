@@ -9,9 +9,10 @@ const main = (req, res) => {
 
 //LISTA DE USUARIOS
 const getUsers = async (req, res) => {
-  await database.pool.query("SELECT * FROM users", (error, result) => {
-    res.status(200).json(result.rows);
-  });
+  await database.pool
+  .query("SELECT * FROM users")
+  .then((result) => res.status(200).json(result.rows))
+  .catch((e) => console.error(e));
 };
 
 //INFORMACION BASICA DEL USUARIO (PROFILE)
@@ -20,7 +21,7 @@ const getUserProfile = async (req, res) => {
   const query = `SELECT firstname||' '||lastname AS username, email, country, city, description, imgProfile FROM users WHERE id=$1`;
   await database.pool
     .query(query, [userId])
-    .then((result) => res.json(result.rows))
+    .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 
@@ -30,7 +31,7 @@ const getRoutes = async (req, res) => {
   INNER JOIN users AS u ON r.userId=u.id`;
   await database.pool
     .query(query)
-    .then((result) => res.json(result.rows))
+    .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 
@@ -42,7 +43,7 @@ const getRoutesById = async (req, res) => {
   WHERE r.id=${routeId}`;
   await database.pool
     .query(query)
-    .then((result) => res.json(result.rows))
+    .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 
@@ -54,7 +55,7 @@ const getRoutesBySearch = async (req, res) => {
   WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
   await database.pool
     .query(query)
-    .then((result) => res.json(result.rows))
+    .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 
@@ -89,18 +90,18 @@ const postRoute = async (req, res) => {
       `INSERT INTO routes (${queryTitles}) VALUES (${queryPositions})`,
       values
     )
-    .then(() => res.send(`Route created!`))
+    .then(() => res.status(201).send(`Route created!`))
     .catch((e) => console.error(e));
 };
 
 //MARCAR RUTA COMO FAVORITA (GUARDADA)
-const postFavoriteRoute = (req, res) => {
+const postFavoriteRoute = async (req, res) => {
   const userId = req.body.userId;
   const routeId = req.params.routeId;
   const query = `INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`;
-  database.pool
+  await database.pool
     .query(query, [userId, routeId])
-    .then(() => res.send(`Route marked as favorite!`))
+    .then(() => res.status(201).send(`Route marked as favorite!`))
     .catch((e) => console.error(e));
 };
 
@@ -113,7 +114,7 @@ const getFavoriteRoutes = async (req, res) => {
   WHERE f.userId=$1 ORDER BY routeId`;
   await database.pool
     .query(query, [userId])
-    .then((result) => res.json(result.rows))
+    .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 
