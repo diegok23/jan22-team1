@@ -1,12 +1,9 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { LeftPanel, BoxInputs } from "../Signup.style";
-import ButtonSignup from "./ButtonSignup";
 import HomeIconButton from "./HomeIconButton";
-import InputCountry from "./InputCountry";
-import InputEmail from "./InputEmail";
-import InputName from "./InputName";
-import InputPassword from "./InputPassword";
+import Inputs from "./Inputs";
+
 
 
 function SidePanelMain() {
@@ -49,11 +46,11 @@ function SidePanelMain() {
           </Typography>
         </Typography>
        
-        <InputEmail />
-        <InputName />
-        <InputCountry/>
-        <InputPassword />
-        <ButtonSignup />
+        <Inputs />
+    
+   
+       
+    
       
       </BoxInputs>
     </LeftPanel>
