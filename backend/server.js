@@ -16,13 +16,13 @@ const myLogger = (req, res, next) => {
   next();
 };
 
+const corsOptions = { origin: 'http://localhost:3000' };
+app.use(cors(corsOptions)); // enable CORS
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(myLogger);
 app.use('/user', user);
-app.use(cors());
-
 
 app.get('/', api.main);
 app.get('/search', api.getRoutesBySearch);
