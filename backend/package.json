@@ -4,7 +4,7 @@
   "description": "Migracode JAN 2022 Final project Team 1",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "debug": "nodemon server.js",
     "start": "node server.js"
   },
   "author": "team1",
