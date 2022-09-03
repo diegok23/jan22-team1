@@ -25,41 +25,41 @@ const getUserProfile = async (req, res) => {
 };
 
 //LISTA DE RUTAS (FEED)
-const getRoutes = (req, res) => {
+const getRoutes = async (req, res) => {
   const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id`;
-  database.pool
+  await database.pool
     .query(query)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
 
 //INFORMACION DE UNA RUTA (BY ID)
-const getRoutesById = (req, res) => {
+const getRoutesById = async (req, res) => {
   const routeId = req.params.routeId;
   const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE r.id=${routeId}`;
-  database.pool
+  await database.pool
     .query(query)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
 
 //BUSQUEDA DE UNA RUTA
-const getRoutesBySearch = (req, res) => {
+const getRoutesBySearch = async (req, res) => {
   const searchString = req.query.s;
   const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
-  database.pool
+  await database.pool
     .query(query)
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 };
 
 //CREAR UNA RUTA
-const postRoute = (req, res) => {
+const postRoute = async (req, res) => {
   const userId = req.params.userId;
   const values = [userId];
   const keys = Object.keys(req.body);
@@ -84,7 +84,7 @@ const postRoute = (req, res) => {
   const queryTitles = updateArrayKeys.join(", ");
   const queryPositions = updateArrayPositions.join(", ");
 
-  database.pool
+  await database.pool
     .query(
       `INSERT INTO routes (${queryTitles}) VALUES (${queryPositions})`,
       values
@@ -105,13 +105,13 @@ const postFavoriteRoute = (req, res) => {
 };
 
 //MOSTRAR RUTAS FAVORITAS DE UN USUARIO
-const getFavoriteRoutes = (req, res) => {
+const getFavoriteRoutes = async (req, res) => {
   const userId = req.params.userId;
   const query = `SELECT r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM favRoutes AS f
   INNER JOIN users AS u ON f.userID=u.id
   INNER JOIN routes AS r ON f.routeID=r.id
   WHERE f.userId=$1 ORDER BY routeId`;
-  database.pool
+  await database.pool
     .query(query, [userId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
