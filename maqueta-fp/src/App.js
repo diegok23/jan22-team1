@@ -14,7 +14,7 @@ function App() {
         <Route path="/login" element={<MainLogin />} />
         <Route path="/feed" element={<Mainfeed />} />
         <Route path="/sign-up" element={<MainSignUp />} />
-        <Route path="/profile" element={<MainProfile />} />
+        <Route path="/profile" element={<MainProfile />}/>
       </Routes>
     </ThemeProvider>
   );
