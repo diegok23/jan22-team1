@@ -4,6 +4,7 @@ import Section2 from "./Section2";
 import Section3 from "./Section3";
 import { Box } from "@mui/system";
 import { Stack } from "@mui/material";
+import Footer from "../Footer/FooterMain"
 
 function MainLanding() {
   return (
@@ -14,6 +15,7 @@ function MainLanding() {
         <Section2 />
         <Section3 />
       </Stack>
+      <Footer/>
     </Box>
   );
 }

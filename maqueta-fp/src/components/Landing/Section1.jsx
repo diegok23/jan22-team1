@@ -45,42 +45,27 @@ function Section1() {
             sx={{
               fontFamily: "Raleway",
               fontWeight: "800",
-              fontSize: { xs: "1.3rem" },
+              fontSize: { xs: "2rem", sm:'3rem', md:'6rem' },
             }}
           >
             Welcome to Cy
             <Typography variant="span" color="white.main">
-              click
+              Click
             </Typography>
           </Typography>
         </Box>
         <Box>
           <Typography
-            variant="h3"
+            variant="h2"
             color="white.main"
             textTransform="uppercase"
             letterSpacing="0.3rem"
-            sx={{ fontSize: { xs: "2rem" } }}
+            sx={{ fontSize: { xs: "1rem", sm:'1.5rem', md:'2rem' }, fontWeight:'600' }}
           >
-            Lorem ipsum
+            CYCLING ROUTES
           </Typography>
         </Box>
-        <Box width="70%">
-          <Typography
-            variant="p"
-            color="white.main"
-            lineHeight="1.5rem"
-            sx={{
-              wordSpacing: "0.1rem",
-              fontSize: { xs: "0.8rem", md: "1.2rem" },
-            }}
-          >
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.Pariatur
-            quod distinctio facere molestiae ducimus fugiatanimi explicabo
-            asperiores veritatis recusandae optio provident impedit numquam
-            quam, harum autem quibusdam ea ipsam.
-          </Typography>
-        </Box>
+       
       </ContentContainer>
     
     </SectionContainer>

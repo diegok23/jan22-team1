@@ -15,7 +15,7 @@ function InputPassword() {
       />
 
 <Input
-        id="standard-password-input"
+        id="standard-password-confirm-input"
         label="Confirm Password"
         type="password"
         autoComplete="current-password"

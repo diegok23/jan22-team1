@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import CardMain from "./CardModel/CardMain";
+import CardMain from "./CardModelNew/CardMain";
 
 const Feed = () => {
   return (

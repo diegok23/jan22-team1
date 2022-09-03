@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { LeftPanel, BoxInputs } from "../Signup.style";
 import ButtonSignup from "./ButtonSignup";
 import HomeIconButton from "./HomeIconButton";
+import InputCountry from "./InputCountry";
 import InputEmail from "./InputEmail";
 import InputName from "./InputName";
 import InputPassword from "./InputPassword";
-import SplitButtonCountry from "./SplitButtonCountry";
+
 
 function SidePanelMain() {
   return (
@@ -44,13 +45,16 @@ function SidePanelMain() {
           </Typography>{" "}
           account, log in{" "}
           <Typography variant="span" sx={{ color: "secondary.main" }}>
-            <Link to="/login"> here.</Link>
+            <Link style={{textDecoration:'none', color:'#15d4be'}} to="/login"> here.</Link>
           </Typography>
         </Typography>
+       
         <InputEmail />
         <InputName />
+        <InputCountry/>
         <InputPassword />
         <ButtonSignup />
+      
       </BoxInputs>
     </LeftPanel>
   );

@@ -2,32 +2,32 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import { InputDoubleLeft, InputDoubleRight } from "../Signup.style";
 
-function InputName() {
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
+function InputCountry() {
+  const [userCountry, setUserCountry] = useState("");
+  const [userCity, setUserCity] = useState("");
   return (
     <Box display="flex" justifyContent="center">
       <InputDoubleLeft
-        value={userFirstName}
+        value={userCountry}
         onChange={(e) =>
-          setUserFirstName(console.log(`input result => ${e.target.value}`))
+          setUserCountry(console.log(`input result => ${e.target.value}`))
         }
         required
-        id="standard-read-only-input-fn"
-        label="First Name"
+        id="standard-read-only-input-contry"
+        label="Country"
         variant="standard"
         color="secondary"
         focused
       />
 
       <InputDoubleRight
-        value={userLastName}
+        value={userCity}
         onChange={(e) =>
-          setUserLastName(console.log(`input result => ${e.target.value}`))
+          setUserCity(console.log(`input result => ${e.target.value}`))
         }
         required
-        id="standard-read-only-input-ln"
-        label="Last Name"
+        id="standard-read-only-input-city"
+        label="City"
         variant="standard"
         color="secondary"
         focused
@@ -36,4 +36,4 @@ function InputName() {
   );
 }
 
-export default InputName;
+export default InputCountry;
