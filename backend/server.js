@@ -28,6 +28,7 @@ app.get('/', api.main);
 app.get('/search', api.getRoutesBySearch);
 app.get('/users', api.getUsers);
 app.get('/users/:userId', api.getUserProfile);
+app.get('/myroutes/:userId', api.getRoutesByUser);
 app.get('/favorites/:userId', api.getFavoriteRoutes);
 app.get('/routes', api.getRoutes);
 app.get('/routes/:routeId', api.getRoutesById);
