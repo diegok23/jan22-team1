@@ -1,20 +1,24 @@
-import { Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import { useState } from 'react';
-import { Input, LoginButton } from '../Login.style';
-import { signIn } from './fetchs';
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { useState, useEffect } from "react";
+import { Input, LoginButton } from "../Login.style";
+import useUser from "../../../hook/useUser";
+import { useNavigate } from "react-router-dom";
 
 function Inputs() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
- /*  const [isSigned, setIsSigned] = useState(false);
-  const [isSignError, setIsSignError] = useState(false);
- */
-  const signInUser = async (e) => {
-    e.preventDefault();
-    const body = await signIn(email, password);
-    console.log(body);
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, isLogged } = useUser();
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    if (isLogged) navigation("/feed");
+  }, [isLogged, navigation]);
+
+const handleClick = (e) =>{
+  e.preventDefault()
+  login({email, password})
+}
 
   return (
     <Box>
@@ -44,7 +48,7 @@ function Inputs() {
         />
       </Box>
 
-      <LoginButton size="small" onClick={signInUser} variant="contained">
+      <LoginButton onClick={handleClick} size="small" variant="contained">
         <Typography>Log in</Typography>
       </LoginButton>
     </Box>

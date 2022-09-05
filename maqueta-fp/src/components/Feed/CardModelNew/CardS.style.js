@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Card, CardActions } from "@mui/material";
+import { Avatar, Box, Button, Card, CardActions } from "@mui/material";
 
 
 export const ButtonPer = styled(Button)(({ theme }) => ({
@@ -38,3 +38,34 @@ export const CardContainer = styled(CardActions)(({ theme }) => ({
       backgroundColor: theme.palette.primary.main
     }
   }));
+
+  export const PopupNoLoggedBox = styled(Box)(({ theme }) => ({
+    backgroundColor: "white",
+    position: "absolute",
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    paddingLeft:'20px',
+    paddingRight:'20px',
+    borderRadius:'20px'
+  }));
+
+  export const NewAccountButton = styled(Button)(({ theme }) => ({
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.white.main,
+    "&:hover": {backgroundColor: theme.palette.secondary.main, },
+    marginTop: "30px",
+    marginBottom: "20px",
+    textTransform: "none",
+    width: "50%",
+  }));
+  
+
+  export const AvatarBecome = styled(Avatar)(({ theme }) => ({
+    backgroundColor: theme.palette.secondary.main,
+    marginTop:'10px',
+    marginBottom :'10px'
+   
+  }));
+  
