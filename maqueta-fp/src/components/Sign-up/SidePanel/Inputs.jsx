@@ -2,21 +2,30 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { Input, InputDoubleLeft, InputDoubleRight, SignUpButton } from "../Signup.style";
+import { signUp } from '../../../static/signUp';
 
 function Inputs() {
-  const [userEmail, setUserEmail] = useState("");
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
-  const [userCountry, setUserCountry] = useState("");
-  const [userCity, setUserCity] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [password, setPassword] = useState("");
+  let body =''
+
+  const signUpUser = async (e) => {
+    e.preventDefault();
+    body = await signUp(email, password, firstname, lastname, country, city,);
+    console.log(body);
+  };
 
   return (
     <Box>
       <Box>
         <Input
-          value={userEmail}
+          value={email}
           onChange={(e) =>
-            setUserEmail(console.log(`input result => ${e.target.value}`))
+            setEmail(console.log(`input result => ${e.target.value}`))
           }
           required
           id="standard-read-only-input"
@@ -29,9 +38,9 @@ function Inputs() {
 
       <Box display="flex" justifyContent="center">
       <InputDoubleLeft
-        value={userFirstName}
+        value={firstname}
         onChange={(e) =>
-          setUserFirstName(console.log(`input result => ${e.target.value}`))
+          setFirstName(console.log(`input result => ${e.target.value}`))
         }
         required
         id="standard-read-only-input-fn"
@@ -42,9 +51,9 @@ function Inputs() {
       />
 
       <InputDoubleRight
-        value={userLastName}
+        value={lastname}
         onChange={(e) =>
-          setUserLastName(console.log(`input result => ${e.target.value}`))
+          setLastName(console.log(`input result => ${e.target.value}`))
         }
         required
         id="standard-read-only-input-ln"
@@ -57,9 +66,9 @@ function Inputs() {
 
     <Box display="flex" justifyContent="center">
       <InputDoubleLeft
-        value={userCountry}
+        value={country}
         onChange={(e) =>
-          setUserCountry(console.log(`input result => ${e.target.value}`))
+          setCountry(console.log(`input result => ${e.target.value}`))
         }
         required
         id="standard-read-only-input-contry"
@@ -70,9 +79,9 @@ function Inputs() {
       />
 
       <InputDoubleRight
-        value={userCity}
+        value={city}
         onChange={(e) =>
-          setUserCity(console.log(`input result => ${e.target.value}`))
+          setCity(console.log(`input result => ${e.target.value}`))
         }
         required
         id="standard-read-only-input-city"
@@ -85,6 +94,10 @@ function Inputs() {
 
     <Box>
       <Input
+      value={password}
+      onChange={(e) =>
+        setPassword(console.log(`input result => ${e.target.value}`))
+      }
         id="standard-password-input"
         label="Password"
         type="password"
@@ -94,18 +107,10 @@ function Inputs() {
         focused
       />
 
-<Input
-        id="standard-password-confirm-input"
-        label="Confirm Password"
-        type="password"
-        autoComplete="current-password"
-        variant="standard"
-        color="secondary"
-        focused
-      />
+
     </Box>
 
-    <SignUpButton size="small" variant="contained">
+    <SignUpButton onClick={signUpUser} size="small" variant="contained">
     <Typography>Register</Typography>
   </SignUpButton>
 

@@ -67,8 +67,9 @@ router.post('/signin', async (req, res) => {
           );
           res.status(200).json({
             message: 'User was signed in successfully!',
-            token: token,
-            isAuthenticated: true
+            jwt: token,
+            isAuthenticated: true,
+            id : data.rows[0].id
           });
         } else {
           //Declaring the errors
