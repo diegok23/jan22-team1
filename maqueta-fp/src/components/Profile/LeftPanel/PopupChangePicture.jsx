@@ -1,5 +1,5 @@
 import { AvatarChangePicture, AvatarsForSelect, EditButton, PopupDescription, TextFieldStyled } from "../Profile.style";
-import {Avatar, Box, Button, Modal, Typography} from "@mui/material";
+import {Box, Button, Modal, Typography} from "@mui/material";
 import LocalSeeIcon from "@mui/icons-material/LocalSee";
 import { useState } from "react";
 

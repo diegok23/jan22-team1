@@ -1,8 +1,14 @@
 import { Box,Typography } from "@mui/material";
 import { GoButton, Section2Container, Content2Container } from "./Sections.style";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function Section2() {
+  const navigation = useNavigate();
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigation('/feed')
+  };
   return (
     <Section2Container >
       <Content2Container>
@@ -25,8 +31,7 @@ function Section2() {
             in your city, just one click
           </Typography>
           
-          <GoButton>
-            <Link style={{textDecoration:'none', color:'white', fontFamily:'Raleway'}} to='/feed'>
+          <GoButton onClick={handleClick}>
               <Typography variant="h3"
             color="white.main"
             textTransform="uppercase"
@@ -34,7 +39,6 @@ function Section2() {
             sx={{ fontSize: { xs: "0.6rem",sm:'1rem', md: "2rem" }, fontWeight: "800" }}>
               Go to routes
                 </Typography> 
-            </Link>
           </GoButton>
         </Box>
       </Content2Container>
