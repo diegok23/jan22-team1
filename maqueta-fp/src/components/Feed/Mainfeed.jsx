@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/NavbarAuth";
+import Navbar from "../Navbar/NavBar";
 import Feed from "./Feed";
 import { Box } from "@mui/system";
 import { Stack } from "@mui/material";

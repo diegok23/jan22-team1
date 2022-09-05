@@ -4,7 +4,7 @@ import CardsSection from "./CardsSection";
 const MainRP = () => {
   return (
     <Grid item xs={12} md={9} >
-      <AboutMeSection/>
+      <AboutMeSection />
       <CardsSection/>
     </Grid>
   );

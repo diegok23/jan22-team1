@@ -11,7 +11,7 @@ import { Avatar, Box, Modal, Typography } from "@mui/material";
 import { useState } from "react";
 import PopupChangePicture from "../LeftPanel/PopupChangePicture";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-
+import profileImg from "../../../img/profile-default.jpg"
 const AboutMeSection = () => {
   const [open, setOpen] = useState(false);
   return (
@@ -22,7 +22,7 @@ const AboutMeSection = () => {
           <PopupChangePicture />
           <Avatar
             sx={{ width: "80px", height: "80px", marginTop: "70px" }}
-            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
+            src={profileImg}
           ></Avatar>
         </Box>
 
