@@ -1,18 +1,18 @@
-const database = require("./database");
+const database = require('./database');
 let todayDate = new Date().toISOString().slice(0, 10);
 
 //QUERIES
 
 const main = (req, res) => {
-  res.status(200).send("Main page");
+  res.status(200).send('Main page');
 };
 
 //LISTA DE USUARIOS
 const getUsers = async (req, res) => {
   await database.pool
-  .query("SELECT * FROM users")
-  .then((result) => res.status(200).json(result.rows))
-  .catch((e) => console.error(e));
+    .query('SELECT * FROM users')
+    .then((result) => res.status(200).json(result.rows))
+    .catch((e) => console.error(e));
 };
 
 //INFORMACION BASICA DEL USUARIO (PROFILE)
@@ -28,7 +28,7 @@ const getUserProfile = async (req, res) => {
 //LISTA DE RUTAS (FEED)
 const getRoutes = async (req, res) => {
   const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
-  INNER JOIN users AS u ON r.userId=u.id`;
+  INNER JOIN users AS u ON r.userId=u.id ORDER BY created_at DESC`;
   await database.pool
     .query(query)
     .then((result) => res.status(200).json(result.rows))
@@ -66,8 +66,8 @@ const postRoute = async (req, res) => {
   const keys = Object.keys(req.body);
 
   let position = 2;
-  let updateArrayKeys = ["userId"];
-  let updateArrayPositions = ["$1"];
+  let updateArrayKeys = ['userId'];
+  let updateArrayPositions = ['$1'];
 
   keys.forEach((key) => {
     const keyValue = `${key}`;
@@ -78,18 +78,15 @@ const postRoute = async (req, res) => {
     position++;
   });
 
-  updateArrayKeys.push("created_at");
+  updateArrayKeys.push('created_at');
   updateArrayPositions.push(`$${position}`);
-  values.push("NOW()");
+  values.push('NOW()');
 
-  const queryTitles = updateArrayKeys.join(", ");
-  const queryPositions = updateArrayPositions.join(", ");
+  const queryTitles = updateArrayKeys.join(', ');
+  const queryPositions = updateArrayPositions.join(', ');
 
   await database.pool
-    .query(
-      `INSERT INTO routes (${queryTitles}) VALUES (${queryPositions})`,
-      values
-    )
+    .query(`INSERT INTO routes (${queryTitles}) VALUES (${queryPositions})`, values)
     .then(() => res.status(201).send(`Route created!`))
     .catch((e) => console.error(e));
 };
@@ -118,14 +115,27 @@ const getFavoriteRoutes = async (req, res) => {
     .catch((e) => console.error(e));
 };
 
+//MOSTRAR RUTAS CREADAS POR UN USUARIO
+const getRoutesByUser = async (req, res) => {
+  const userId = req.params.userId;
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  INNER JOIN users AS u ON r.userId=u.id
+  WHERE u.id=${userId} ORDER BY created_at DESC`;
+  await database.pool
+    .query(query)
+    .then((result) => res.status(200).json(result.rows))
+    .catch((e) => console.error(e));
+};
+
 module.exports = {
   main,
   getUsers,
   getUserProfile,
   getRoutes,
   getRoutesById,
+  getRoutesByUser,
   getRoutesBySearch,
   getFavoriteRoutes,
   postRoute,
-  postFavoriteRoute,
+  postFavoriteRoute
 };
