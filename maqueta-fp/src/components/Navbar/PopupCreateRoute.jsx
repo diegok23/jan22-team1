@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ButtonCreate,
   Input,
@@ -9,6 +9,8 @@ import {
 import { Modal, Typography } from "@mui/material";
 import { EditButton, TextFieldStyled } from "../Profile/Profile.style";
 import { Box } from "@mui/system";
+import createRoute from "../../static/createRoute";
+import { useNavigate } from "react-router-dom";
 
 const PopupCreateRoute = () => {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,33 @@ const PopupCreateRoute = () => {
   const [type, setType] = useState("");
   const [distance, setDistance] = useState("");
   const [description, setDescription] = useState("");
+  let body = "";
+  const navigation = useNavigate();
+  const [accountStatus, setAccountStatus] = useState(false);
+  const refreshPage = () => {navigation(0);}
+
+  const handleCreateRoute = async (e) => {
+    e.preventDefault();
+    body = await createRoute({
+      title,
+      url,
+      country,
+      city,
+      type,
+      distance,
+      description,
+    });
+    body.isCreated && setAccountStatus(true);
+  };
+
+  useEffect(() => {
+    
+    if (accountStatus) refreshPage("/feed");
+  }, [accountStatus, refreshPage]);
+
+  useEffect(() => {
+    if (accountStatus) setOpen(false);
+  }, [accountStatus, setOpen]);
 
   return (
     <>
@@ -66,8 +95,8 @@ const PopupCreateRoute = () => {
 
           <Box mt="10px" mb="10px">
             <Input
-             value={title}
-             onChange={(e) => setTitle(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
               id="standard-read-only-input"
               label="Title"
@@ -77,8 +106,8 @@ const PopupCreateRoute = () => {
             />
 
             <Input
-             value={url}
-             onChange={(e) => setUrl(e.target.value)}
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               required
               id="standard-read-only-input"
               label="URL"
@@ -90,8 +119,8 @@ const PopupCreateRoute = () => {
 
           <Box mt="10px" mb="40px">
             <InputDoubleLeft
-             value={country}
-             onChange={(e) => setCountry(e.target.value)}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
               required
               id="standard-read-only-input"
               label="Country"
@@ -101,8 +130,8 @@ const PopupCreateRoute = () => {
             />
 
             <InputDoubleRight
-             value={city}
-             onChange={(e) => setCity(e.target.value)}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
               required
               id="standard-read-only-input"
               label="City"
@@ -112,8 +141,8 @@ const PopupCreateRoute = () => {
             />
 
             <InputDoubleRight
-             value={type}
-             onChange={(e) => setType(e.target.value)}
+              value={type}
+              onChange={(e) => setType(e.target.value)}
               required
               id="standard-read-only-input"
               label="Type"
@@ -123,8 +152,8 @@ const PopupCreateRoute = () => {
             />
 
             <InputDoubleRight
-             value={distance}
-             onChange={(e) => setDistance(e.target.value)}
+              value={distance}
+              onChange={(e) => setDistance(e.target.value)}
               required
               id="standard-read-only-input"
               label="Distance"
@@ -136,8 +165,8 @@ const PopupCreateRoute = () => {
 
           <Box>
             <TextFieldStyled
-             value={description}
-             onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               id="outlined-multiline-static"
               label="Description"
               multiline
@@ -149,7 +178,7 @@ const PopupCreateRoute = () => {
           </Box>
 
           <Box display="flex" justifyContent="center">
-            <EditButton>
+            <EditButton onClick={handleCreateRoute}>
               <Typography variant="h6" color="white.main">
                 Create
               </Typography>
