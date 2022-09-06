@@ -6,12 +6,12 @@ export default function login ({email, password}){
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email,password })
   }).then(res => {
-    if(!res.ok) throw new Error('Response is NOT ok')
+   
     return res.json()
   }).then(res => { 
-    console.log(res);
-   const {jwt,id} = res 
+    alert(res.error);
+   const {jwt,id,} = res 
   
    return {jwt,id}
-  })  
+  }) 
 }

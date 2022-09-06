@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import AboutMeSection from "./AboutMeSection";
 import CardsSection from "./CardsSection";
-const MainRP = () => {
+const MainRP = (data) => {
   return (
     <Grid item xs={12} md={9} >
       <AboutMeSection />

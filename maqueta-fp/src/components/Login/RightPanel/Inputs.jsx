@@ -10,6 +10,7 @@ function Inputs() {
   const [password, setPassword] = useState("");
   const { login, isLogged } = useUser();
   const navigation = useNavigate();
+ 
 
   useEffect(() => {
     if (isLogged) navigation("/feed");
@@ -18,6 +19,7 @@ function Inputs() {
 const handleClick = (e) =>{
   e.preventDefault()
   login({email, password})
+  
 }
 
   return (
