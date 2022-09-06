@@ -137,6 +137,36 @@ const getRoutesByUser = async (req, res) => {
     .catch((e) => console.error(e));
 };
 
+const updateUserDescription = async (req, res) => {
+  const userId = req.body.userId;
+  const description = req.body.description;
+  const query = `UPDATE users SET description = '$1' WHERE u.id=${userId}`;
+  await database.pool
+    .query(query, [description])
+    .then(() =>
+      res.status(201).json({
+        message: 'Description modified',
+        isModified: true
+      })
+    )
+    .catch((e) => console.error(e));
+};
+
+const updateUserPicture = async (req, res) => {
+  const userId = req.body.userId;
+  const picture = req.body.picture;
+  const query = `UPDATE users SET imgProfile = '$1' WHERE u.id=${userId}`;
+  await database.pool
+    .query(query, [picture])
+    .then(() =>
+      res.status(201).json({
+        message: 'Picture modified',
+        isModified: true
+      })
+    )
+    .catch((e) => console.error(e));
+};
+
 module.exports = {
   main,
   getUsers,
@@ -147,5 +177,7 @@ module.exports = {
   getRoutesBySearch,
   getFavoriteRoutes,
   postRoute,
-  postFavoriteRoute
+  postFavoriteRoute,
+  updateUserDescription,
+  updateUserPicture
 };
