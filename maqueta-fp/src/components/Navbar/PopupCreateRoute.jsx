@@ -12,6 +12,14 @@ import { Box } from "@mui/system";
 
 const PopupCreateRoute = () => {
   const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [type, setType] = useState("");
+  const [distance, setDistance] = useState("");
+  const [description, setDescription] = useState("");
+
   return (
     <>
       <ButtonCreate onClick={(e) => setOpen(true)}>
@@ -58,6 +66,8 @@ const PopupCreateRoute = () => {
 
           <Box mt="10px" mb="10px">
             <Input
+             value={title}
+             onChange={(e) => setTitle(e.target.value)}
               required
               id="standard-read-only-input"
               label="Title"
@@ -67,6 +77,8 @@ const PopupCreateRoute = () => {
             />
 
             <Input
+             value={url}
+             onChange={(e) => setUrl(e.target.value)}
               required
               id="standard-read-only-input"
               label="URL"
@@ -78,6 +90,8 @@ const PopupCreateRoute = () => {
 
           <Box mt="10px" mb="40px">
             <InputDoubleLeft
+             value={country}
+             onChange={(e) => setCountry(e.target.value)}
               required
               id="standard-read-only-input"
               label="Country"
@@ -87,6 +101,8 @@ const PopupCreateRoute = () => {
             />
 
             <InputDoubleRight
+             value={city}
+             onChange={(e) => setCity(e.target.value)}
               required
               id="standard-read-only-input"
               label="City"
@@ -96,6 +112,8 @@ const PopupCreateRoute = () => {
             />
 
             <InputDoubleRight
+             value={type}
+             onChange={(e) => setType(e.target.value)}
               required
               id="standard-read-only-input"
               label="Type"
@@ -105,6 +123,8 @@ const PopupCreateRoute = () => {
             />
 
             <InputDoubleRight
+             value={distance}
+             onChange={(e) => setDistance(e.target.value)}
               required
               id="standard-read-only-input"
               label="Distance"
@@ -116,6 +136,8 @@ const PopupCreateRoute = () => {
 
           <Box>
             <TextFieldStyled
+             value={description}
+             onChange={(e) => setDescription(e.target.value)}
               id="outlined-multiline-static"
               label="Description"
               multiline
