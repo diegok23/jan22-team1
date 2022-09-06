@@ -22,9 +22,9 @@ export default async function createRoute({
   };
 
   console.log(requestOptions);
-
+  const userId = window.sessionStorage.getItem("id");
   const response = await fetch(
-    `http://localhost:4000/myRoutes/3`,
+    `http://localhost:4000/myRoutes/${userId}`,
     requestOptions
   );
   const body = await response.json();

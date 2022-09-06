@@ -4,13 +4,12 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import PopupChangePicture from "./PopupChangePicture";
 import profileImg from "../../../img/profile-default.jpg"
 
-const MainLP = ({data}) => {
-
-  console.log(data);
+const MainLP = (data) => {
 
   
   return (
-    <Grid item xs={3} display={{xs:'none',sm:'none', md:'block'}}>
+    <>
+    {data.data.length > 0 && (<Grid item xs={3} display={{xs:'none',sm:'none', md:'block'}}>
       <Item>
         
         <Box display="flex" justifyContent="center">
@@ -23,18 +22,20 @@ const MainLP = ({data}) => {
 
         <Box display="flex" justifyContent="center" mt="10px">
           <Typography variant="h4" color="white.main">
-        Xun li
+       {data.data[0].username}
           </Typography>
         </Box>
 
         <Box display="flex" justifyContent="center" mt="10px">
           <FmdGoodIcon color="secondary"></FmdGoodIcon>
           <Typography variant="h6" color="secondary" sx={{ fontSize: "1rem" }}>
-            Spain, Barcelona
+          {data.data[0].country}, {data.data[0].city}
           </Typography>
         </Box>
       </Item>
-    </Grid>
+    </Grid>) }
+    </>
+    
   );
 };
 

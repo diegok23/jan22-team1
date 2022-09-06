@@ -28,7 +28,7 @@ const AboutMeSection = () => {
 
         <Box display="flex" justifyContent="center" mt="10px">
           <Typography variant="h7" color="white.main">
-            Xun Li
+           Xun li
           </Typography>
         </Box>
 

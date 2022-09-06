@@ -10,6 +10,8 @@ export default function useUser() {
       loginService({ email, password })
         .then(({jwt, id}) => {
           window.sessionStorage.setItem('jwt', jwt)
+          
+          window.sessionStorage.setItem('id', id)
           setJWT(jwt)  
         })
         .catch((err) => {
@@ -19,7 +21,6 @@ export default function useUser() {
     },
     [setJWT]
   );
-  
   const logout = useCallback(() => {
     window.sessionStorage.removeItem('jwt')
     setJWT(null);

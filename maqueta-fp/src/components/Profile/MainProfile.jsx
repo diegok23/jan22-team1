@@ -6,34 +6,29 @@ import MainRP from "./RightPanel/MainRP";
 import { useState } from "react";
 import { useEffect } from "react";
 
-
 const MainProfile = () => {
+  const URL = "http://localhost:4000";
+  const [data, setData] = useState([]);
+  const userId = window.sessionStorage.getItem("id");
+  useEffect(() => {
+    const getDataAwait = async () => {
+      fetch(`${URL}/users/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {console.log(data) ; setData(data)} )
+        .catch((error) => console.log(error));
+    };
 
-  const URL = "http://localhost:4000/users/2"
-const [data, setData] = useState ([])
-
-const getDataUser = (url => {
-  fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-     setData(data);
-  });
-})
-
-useEffect (() => {
-  getDataUser(URL)
-},[])
+    getDataAwait();
+  }, []);
   return (
-    <Box sx={{ flexGrow: 1}}>
+    <Box sx={{ flexGrow: 1 }}>
       <Navbar />
-      <Grid   sx={{ backgroundColor:'#2B2B2B'}}  container spacing={2}>
-       <MainLP data={data}/> 
-       <MainRP data={data}/> 
+      <Grid sx={{ backgroundColor: "#2B2B2B" }} container spacing={2}>
+        <MainLP data={data} />
+        <MainRP data={data} />
       </Grid>
     </Box>
   );
-}
+};
 
-export default MainProfile
+export default MainProfile;

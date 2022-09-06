@@ -22,6 +22,7 @@ function Inputs() {
   const [accountStatus, setAccountStatus] = useState(false);
   let body = "";
   const navigation = useNavigate();
+  const refreshPage = () => {navigation(0);}
 
   const signUpUser = async (e) => {
     e.preventDefault();
@@ -37,9 +38,10 @@ function Inputs() {
   };
 
   useEffect(() => {
-    if (accountStatus) navigation("/login");
-  }, [accountStatus, navigation]);
+    if (accountStatus) refreshPage("/login");
+  }, [accountStatus, refreshPage]);
 
+  
 
  
   return (
