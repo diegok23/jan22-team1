@@ -30,7 +30,11 @@ router.post('/signup', async (req, res) => {
         .query(query, values)
         .then(() => {
           const jwtToken = generateJWT(email);
-          return res.status(201).send({ message: 'User was registered successfully!', jwtToken: jwtToken, isAuthenticated: true });
+          return res.status(201).send({
+            message: 'User was registered successfully!',
+            jwtToken: jwtToken,
+            isAuthenticated: true
+          });
         })
         .catch((e) => console.error(e));
     }
