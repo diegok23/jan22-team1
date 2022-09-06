@@ -11,6 +11,7 @@ import signUp from "../../../static/signUp";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+
 function Inputs() {
   const [email, setEmail] = useState("");
   const [firstname, setFirstName] = useState("");
