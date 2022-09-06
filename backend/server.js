@@ -33,7 +33,7 @@ app.get('/favorites/:userId', api.getFavoriteRoutes);
 app.get('/routes', api.getRoutes);
 app.get('/routes/:routeId', api.getRoutesById);
 app.post('/routes/:routeId', api.postFavoriteRoute);
-app.post('/users/:userId', api.postRoute);
+app.post('/myroutes/:userId', api.postRoute);
 
 const url = `http://localhost:${PORT}`;
 app.listen(PORT, () => console.log(`Listening on port ${url}`));
