@@ -24,11 +24,11 @@ CREATE TABLE users (
 CREATE TABLE routes (
     id          SERIAL PRIMARY KEY,
     userId      INT REFERENCES users(id),
-    routeName   VARCHAR(120) NOT NULL,
-    routeLength VARCHAR(30) NOT NULL,
+    title       VARCHAR(120) NOT NULL,
+    distance    VARCHAR(30) NOT NULL,
     country     VARCHAR(30) NOT NULL,
     city        VARCHAR(30) NOT NULL,
-    routeType   VARCHAR(10) NOT NULL,
+    type        VARCHAR(10) NOT NULL,
     description VARCHAR(500) NOT NULL,
     url         VARCHAR(500) NOT NULL,
     created_at  DATE

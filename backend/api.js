@@ -27,7 +27,7 @@ const getUserProfile = async (req, res) => {
 
 //LISTA DE RUTAS (FEED)
 const getRoutes = async (req, res) => {
-  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.title, r.country, r.city, r.description, r.distance, r.type, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id ORDER BY created_at DESC`;
   await database.pool
     .query(query)
@@ -38,7 +38,7 @@ const getRoutes = async (req, res) => {
 //INFORMACION DE UNA RUTA (BY ID)
 const getRoutesById = async (req, res) => {
   const routeId = req.params.routeId;
-  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.title, r.country, r.city, r.description, r.distance, r.type, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE r.id=${routeId}`;
   await database.pool
@@ -50,9 +50,9 @@ const getRoutesById = async (req, res) => {
 //BUSQUEDA DE UNA RUTA
 const getRoutesBySearch = async (req, res) => {
   const searchString = req.query.s;
-  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.title, r.country, r.city, r.description, r.distance, r.type, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
-  WHERE (r.routeName, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
+  WHERE (r.title, r.country, r.city, r.description)::text ILIKE '%${searchString}%'`;
   await database.pool
     .query(query)
     .then((result) => res.status(200).json(result.rows))
@@ -87,7 +87,12 @@ const postRoute = async (req, res) => {
 
   await database.pool
     .query(`INSERT INTO routes (${queryTitles}) VALUES (${queryPositions})`, values)
-    .then(() => res.status(201).send(`Route created!`))
+    .then(() =>
+      res.status(201).json({
+        message: 'Route Created!',
+        isCreated: true
+      })
+    )
     .catch((e) => console.error(e));
 };
 
@@ -98,14 +103,19 @@ const postFavoriteRoute = async (req, res) => {
   const query = `INSERT INTO favRoutes (userId, routeId) VALUES ($1,$2) ON CONFLICT DO NOTHING`;
   await database.pool
     .query(query, [userId, routeId])
-    .then(() => res.status(201).send(`Route marked as favorite!`))
+    .then(() =>
+      res.status(201).json({
+        message: 'Route marked as favorite!',
+        isFav: true
+      })
+    )
     .catch((e) => console.error(e));
 };
 
 //MOSTRAR RUTAS FAVORITAS DE UN USUARIO
 const getFavoriteRoutes = async (req, res) => {
   const userId = req.params.userId;
-  const query = `SELECT r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM favRoutes AS f
+  const query = `SELECT r.title, r.country, r.city, r.description, r.distance, r.type, r.url, r.created_at FROM favRoutes AS f
   INNER JOIN users AS u ON f.userID=u.id
   INNER JOIN routes AS r ON f.routeID=r.id
   WHERE f.userId=$1 ORDER BY routeId`;
@@ -118,7 +128,7 @@ const getFavoriteRoutes = async (req, res) => {
 //MOSTRAR RUTAS CREADAS POR UN USUARIO
 const getRoutesByUser = async (req, res) => {
   const userId = req.params.userId;
-  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.routeName, r.country, r.city, r.description, r.routeLength, r.routeType, r.url, r.created_at FROM routes AS r
+  const query = `SELECT u.firstname||' ' ||u.lastname AS created_by, r.title, r.country, r.city, r.description, r.distance, r.type, r.url, r.created_at FROM routes AS r
   INNER JOIN users AS u ON r.userId=u.id
   WHERE u.id=${userId} ORDER BY created_at DESC`;
   await database.pool
