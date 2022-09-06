@@ -9,6 +9,7 @@ const router = express.Router(); // we create a new router using express's inbui
 // user registration / sign-up
 router.post('/signup', async (req, res) => {
   const { email, password, firstname, lastname, country, city, description, imgProfile } = req.body;
+  console.log(req.body);
   const query = `
   INSERT INTO users (email, password, firstname, lastname, country, city, description, imgProfile, created_at) 
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'NOW()') RETURNING *`;

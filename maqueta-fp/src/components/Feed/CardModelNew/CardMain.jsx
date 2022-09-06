@@ -14,6 +14,7 @@ import profileImg from "../../../img/profile-default.jpg";
 import useUser from "../../../hook/useUser";
 import PopupNoLogged from "./PopupNoLogged";
 import PopupNoLoggedSave from "./PopupNoLoggedSave";
+import ImagesCard from "./ImagesCard";
 
 const CardMain = ({ routes }) => {
   const { isLogged } = useUser();
@@ -21,7 +22,7 @@ const CardMain = ({ routes }) => {
   return (
     <>
       {routes.map((item, index) => (
-        <CardPer>
+        <CardPer key={index}>
           <CardHeader
             disableTypography
             sx={{
@@ -57,8 +58,10 @@ const CardMain = ({ routes }) => {
             }
           />
 
+          <ImagesCard/>
+
           <CardContent
-            sx={{ backgroundColor: "#fff", height: "40vh", overflowY: "auto" }}
+            sx={{ backgroundColor: "#fff", height: "20vh", overflowY: "auto" }}
           >
             <Typography
               variant="body2"
