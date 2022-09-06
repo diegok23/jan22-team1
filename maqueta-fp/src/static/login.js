@@ -9,7 +9,9 @@ export default function login ({email, password}){
     if(!res.ok) throw new Error('Response is NOT ok')
     return res.json()
   }).then(res => { 
-   const {jwt} = res 
-   return jwt
+    console.log(res);
+   const {jwt,id} = res 
+  
+   return {jwt,id}
   })  
 }
