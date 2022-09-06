@@ -23,7 +23,7 @@ const MainLP = ({data}) => {
 
         <Box display="flex" justifyContent="center" mt="10px">
           <Typography variant="h4" color="white.main">
-          {data[0].username}
+        Xun li
           </Typography>
         </Box>
 
