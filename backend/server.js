@@ -34,8 +34,8 @@ app.get('/routes', api.getRoutes);
 app.get('/routes/:routeId', api.getRoutesById);
 app.post('/routes/:routeId', api.postFavoriteRoute);
 app.post('/myroutes/:userId', api.postRoute);
-app.update('/user/desc', api.updateUserDescription);
-app.update('/user/pict', api.updateUserPicture);
+app.put('/user/desc', api.updateUserDescription);
+app.put('/user/pict', api.updateUserPicture);
 
 const url = `http://localhost:${PORT}`;
 app.listen(PORT, () => console.log(`Listening on port ${url}`));
