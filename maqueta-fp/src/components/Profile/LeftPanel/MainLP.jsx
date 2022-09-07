@@ -3,13 +3,14 @@ import { Avatar, Box, Typography,Grid} from "@mui/material";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import PopupChangePicture from "./PopupChangePicture";
 import profileImg from "../../../img/profile-default.jpg"
-
-const MainLP = (data) => {
-
-  
+import { useContext } from "react";
+import { infoUserContext } from "../context/infoUserContext";
+const MainLP = () => {
+  const dataContext = useContext(infoUserContext)
+  console.log(dataContext);
   return (
     <>
-    {data.data.length > 0 && (<Grid item xs={3} display={{xs:'none',sm:'none', md:'block'}}>
+    <Grid item xs={3} display={{xs:'none',sm:'none', md:'block'}}>
       <Item>
         
         <Box display="flex" justifyContent="center">
@@ -22,18 +23,18 @@ const MainLP = (data) => {
 
         <Box display="flex" justifyContent="center" mt="10px">
           <Typography variant="h4" color="white.main">
-       {data.data[0].username}
+      {dataContext[0].username}
           </Typography>
         </Box>
 
         <Box display="flex" justifyContent="center" mt="10px">
           <FmdGoodIcon color="secondary"></FmdGoodIcon>
           <Typography variant="h6" color="secondary" sx={{ fontSize: "1rem" }}>
-          {data.data[0].country}, {data.data[0].city}
+          {dataContext[0].city}, {dataContext[0].country}
           </Typography>
         </Box>
       </Item>
-    </Grid>) }
+    </Grid>
     </>
     
   );
