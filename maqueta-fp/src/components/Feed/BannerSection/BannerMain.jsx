@@ -1,13 +1,11 @@
-import {Panel} from './Banner.style'
-import SearchMain from "./Search-section/SearchMain";
+import { Panel } from "./Banner.style";
 import TextBanner from "./TextBanner";
 
 function Banner() {
   return (
-      <Panel>
-       <TextBanner/>
-       <SearchMain/>
-      </Panel> 
+    <Panel>
+      <TextBanner />
+    </Panel>
   );
 }
 

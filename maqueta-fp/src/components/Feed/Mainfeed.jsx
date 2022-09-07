@@ -3,11 +3,11 @@ import Feed from "./Feed";
 import { Box } from "@mui/system";
 import { Stack } from "@mui/material";
 import Banner from "./BannerSection/BannerMain";
-import Footer from "../Footer/FooterMain"
+import Footer from "../Footer/FooterMain";
 
 function Mainfeed() {
   return (
-    <Box>
+    <Box position="relative">
       <Navbar />
       <Stack
         marginTop="48px"
@@ -18,7 +18,7 @@ function Mainfeed() {
         <Banner />
         <Feed />
       </Stack>
-      <Footer/>
+      <Footer />
     </Box>
   );
 }
