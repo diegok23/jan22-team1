@@ -12,7 +12,10 @@ import { useState } from "react";
 import PopupChangePicture from "../LeftPanel/PopupChangePicture";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import profileImg from "../../../img/profile-default.jpg"
+import { useContext } from "react";
+import { infoUserContext } from "../context/infoUserContext";
 const AboutMeSection = () => {
+  const dataContext = useContext(infoUserContext)
   const [open, setOpen] = useState(false);
   return (
     <ItemSup>
@@ -28,7 +31,7 @@ const AboutMeSection = () => {
 
         <Box display="flex" justifyContent="center" mt="10px">
           <Typography variant="h7" color="white.main">
-           Xun li
+          {dataContext[0].username}
           </Typography>
         </Box>
 
@@ -42,7 +45,7 @@ const AboutMeSection = () => {
             color="secondary"
             sx={{ fontSize: "0.5rem" }}
           >
-            Spain, Barcelona
+            {dataContext[0].city}, {dataContext[0].country}
           </Typography>
         </Box>
       </BoxAvatarMobile>
@@ -110,10 +113,7 @@ const AboutMeSection = () => {
             },
           }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          quisquam saepe velit obcaecati quasi voluptatum quos beatae eaque quo
-          earum numquam possimus ratione expedita quas, pariatur, sunt non
-          distinctio voluptas.
+        {dataContext[0].description}
         </Typography>
       </Box>
     </ItemSup>
